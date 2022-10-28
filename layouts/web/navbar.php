@@ -1,20 +1,10 @@
-<nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-    <a href="" class="text-decoration-none d-block d-lg-none">
-        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+<nav id="navbar" class="container-fluid row pt-2 pb-2">
+    <a href="" class="col col-4">
+        <img src="../../assets/img/logo_horizontal.png" alt="" style="height: 50px;">
     </a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <div class="navbar-nav mr-auto py-0">
-            <a href="../../web/home" class="nav-item nav-link active">Beranda</a>
-            <a href="../../web/about" class="nav-item nav-link">Tentang</a>
-            <a href="../../web/book" class="nav-item nav-link">Daftar Buku</a>
-            <a href="../../web/contact" class="nav-item nav-link">Kontak</a>
-        </div>
-        <div class="navbar-nav ml-auto py-0">
-            <a href="../../auth/login.php" class="nav-item nav-link">Login</a>
-            <a href="../../auth/login.php" class="nav-item nav-link">Register</a>
-        </div>
+    <div id="navbar-menu" class="col col-8 d-flex align-items-center justify-content-end">
+        <a href="">Tentang</a>
+        <a href="">Layanan</a>
+        <a href="" class="btn">Login</a>
     </div>
 </nav>

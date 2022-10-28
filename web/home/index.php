@@ -1,80 +1,46 @@
 <?php require_once('../../layouts/web/header.php') ?>
 
 <!-- Products Start -->
-<div class="container-fluid pt-5">
-    <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Paling Banyak Dibaca</span></h2>
+<main class="container-fluid">
+  <h1 class="heading">Pencarian Organisasi Sertifikasi Manajemen</h1>
+
+
+  <section style="margin-top: 5rem;">
+    <h2 class="sub-heading">Pencarian</h2>
+    <hr class="mb-4">
+    <div class="bg-gray p-4">
+      <form class="form" action="">
+        <div class="form-control">
+          <label for="">Nama Perusahaan</label>
+          <div class="input-wrapper">
+            <input type="text" class="w-100">
+          </div>
+        </div>
+
+        <div class="text-right mt-3">
+          <button class="btn" type="submit">
+            <i class="fa-solid fa-search mr-2"></i>
+            <span>Cari</span>
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="row px-xl-5 pb-3">
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1641154748135-8032a61a3f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Buku 1</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>24 Halaman - 12 Jan 21</h6>
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Baca</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-bookmark text-primary mr-1"></i>Tambah Bookmark</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Buku 2</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>24 Halaman - 12 Jan 21</h6>
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Baca</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-bookmark text-primary mr-1"></i>Tambah Bookmark</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=690&q=80" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Buku 3</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>24 Halaman - 12 Jan 21</h6>
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Baca</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-bookmark text-primary mr-1"></i>Tambah Bookmark</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="https://images.unsplash.com/photo-1610882648335-ced8fc8fa6b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Buku 1</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>24 Halaman - 12 Jan 21</h6>
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Baca</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-bookmark text-primary mr-1"></i>Tambah Bookmark</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </section>
+
+  <section style="margin-top: 5rem; margin-bottom: 10rem;">
+    <h2 class="sub-heading">Hasil Pencarian</h2>
+    <hr class="mb-4">
+    <table class="datatable-min">
+      <thead>
+        <tr>
+          <th>Registration Number</th>
+          <th>Examination Number</th>
+          <th>Standar</th>
+          <th>Tanggal Examination</th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+</main>
 
 <?php require_once('../../layouts/web/footer.php') ?>
