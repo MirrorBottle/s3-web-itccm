@@ -17,7 +17,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 body {
-  margin: 0;
+  margin: 0px!important;
   font-family: 'Merriweather', sans-serif!important;
   font-size: 1rem;
   font-weight: 400;
@@ -36,6 +36,9 @@ a {
   width: 100%!important;
 }
 
+.min-h-100 {
+  min-height: 100vh;
+}
 
 /* * BACKGROUND */
 .bg-primary {
@@ -426,8 +429,18 @@ a {
   padding-left: 4rem;
 }
 
-
-
+/* * ALERT */
+.alert {
+  padding: 0.8rem;
+  border-radius: 10px;
+  color: #fff;
+}
+.alert.alert-danger {
+  background: var(--danger);
+}
+.alert.alert-success {
+  background: var(--info);
+}
 /* * BUTTON */
 
 .btn {
@@ -436,14 +449,27 @@ a {
   padding: 0.7rem 2.3rem;
   border: 0px!important;
   cursor: pointer;
+  border-radius: 10px;
 }
 .btn:hover {
   background: var(--secondary);
 }
 /* * CARD */
 
-/* * TABLE */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+}
 
+.card .card-body {
+  padding: 2rem;
+}
+
+/* * TABLE */
+table.dataTable thead tr th {
+  background: var(--primary)!important;
+  color: #fff;
+}
 /* * INPUT */
 
 /* * FORM */
@@ -476,7 +502,7 @@ form.form .form-control input {
   background: transparent;
   color: #333;
   font-size: 1em;
-  border-radius: 0px;
+  border-radius: 5px!important;
   min-height: 34px;
   border: 1px solid #ddd;
 }

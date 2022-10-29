@@ -1,13 +1,13 @@
 <?php
 
-// $databaseHost = 'localhost';
-// $databaseName = 'digitalent_library';
-// $databaseUsername = 'root';
-// $databasePassword = '';
+$databaseHost = 'localhost';
+$databaseName = 's3_web_itccm';
+$databaseUsername = 'root';
+$databasePassword = '';
 
-// $connection = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+$connection = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
-// if(!$connection) {
-//   die('Connection Error: ' . mysqli_connect_errno());
-// }
+if(!$connection) {
+  die('Connection Error: ' . mysqli_connect_errno());
+}
 ?>

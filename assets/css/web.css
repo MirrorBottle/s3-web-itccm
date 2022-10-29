@@ -37,3 +37,9 @@ main hr {
 main button[type="submit"] {
   font-family: 'Open Sans', sans-serif!important;
 }
+
+/* * LOGIN */
+
+#login-container {
+  background: linear-gradient(to bottom left, var(--primary) 0%, var(--accent) 100%);
+}

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light navbar-theme-primary px-4 col-12 d-lg-none">
   <a class="navbar-brand me-lg-5" href="../../assets/dashboard/index.html">
-    <h2 class="text-white">My Book</h2>
+    <h2 class="text-white">ITCCM | Indonesia Testing Center for Construction Materials</h2>
   </a>
   <div class="d-flex align-items-center">
     <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">

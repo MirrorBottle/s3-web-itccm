@@ -1,10 +1,14 @@
 <?php
-function query($query) {
+
+session_start();
+
+
+function query($query, $toObject = true) {
 	global $connection;
 	$result = mysqli_query($connection, $query);
 	$rows = [];
 	while($row = mysqli_fetch_assoc($result) ) {
-		$rows[] = $row;
+		$rows[] = $toObject ? (object) $row : $row;
 	}
 	return $rows;
 }
@@ -123,7 +127,6 @@ function upload($field, $path = '../../img/') {
 function flash($message, $type) {
 	$_SESSION['flash'][$type] = $message;
 }
-
 // LEND
 function lend_books($id) {
 	$result = query("SELECT *, `lend_details`.`id` as lend_detail_id FROM `lend_details` JOIN `books` ON `lend_details`.`book_id` = `books`.`id`  WHERE `lend_details`.`lend_id` = $id ");

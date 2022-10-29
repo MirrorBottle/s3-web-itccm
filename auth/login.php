@@ -1,68 +1,64 @@
 <?php
 
-session_start();
+include_once('../core/config.php');
+include_once('../core/functions.php');
 
-if (isset($_SESSION['status'])) {
-  if ($_SESSION['role'] == 'admin') {
-    header("Location:../admin/dashboard");
-  } else {
-    header("Location:../user/dashboard");
-  }
+if (isset($_SESSION['is_login'])) {
+  $redirect = [
+    '1' => 'admin',
+    '2' => 'auditor',
+    '3' => 'company'
+  ][$_SESSION['user']->role];
+
+  header("Location:../{$redirect}/dashboard/index.php");
 }
 
 if (isset($_POST['username'])) {
-  if ($_POST['username'] == 'daus' && $_POST['password'] == '123456') {
-    $_SESSION['username'] = 'daus';
-    $_SESSION['role'] = 'admin';
-    $_SESSION['status'] = "login";
-    header("Location:../admin/dashboard");
-  } else if ($_POST['username'] == 'user' && $_POST['password'] == 'user') {
-    $_SESSION['username'] = 'user';
-    $_SESSION['role'] = 'user';
-    $_SESSION['status'] = "login";
-    header("Location:../user/dashboard");
-  } else {
-    header("Location:./login.php?denied=true");
+  $user = query("SELECT * FROM users WHERE username='{$_POST['username']}'");
+
+  if(empty($user)) {
+    flash('Username tidak ada!', 'error');
+    header("Location:./login.php");
   }
+
+  $user = $user[0];
+  $isPasswordCorrect = password_verify($_POST['password'], $user->password);
+  
+  if(!$isPasswordCorrect) {
+    flash('Password salah!', 'error');
+    header("Location:./login.php");
+  }
+
+  $_SESSION['user'] = $user;
+  $_SESSION['is_login'] = true;
+
+  $redirect = [
+    '1' => 'admin',
+    '2' => 'auditor',
+    '3' => 'company'
+  ][$user->role];
+
+  header("Location:../{$redirect}/dashboard/index.php");
 }
 ?>
 <?php require_once('../layouts/auth/header.php') ?>
-<div class="row justify-content-center form-bg-image">
-  <div class="col-12 d-flex align-items-center justify-content-center">
-    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-      <div class="text-center text-md-center mb-4 mt-md-0">
-        <img src="../assets/img/logo.png" style="height: 250px;" alt="">
+<div id="login-container" class="min-h-100 d-flex align-items-center justify-content-center">
+  <div class="card" style="min-width: 30rem;">
+    <div class="card-body">
+      <div class="text-center">
+        <img src="../assets/img/logo_horizontal.png" alt="" style="height: 60px;">
       </div>
-      <form action="" class="mt-4" method="POST">
-        <!-- Form -->
-        <div class="form-group mb-4">
-          <label for="username">Username</label>
-          <div class="input-group">
-            <input type="text" name="username" class="form-control" placeholder="username" id="username" autofocus required>
-          </div>
+      <hr>
+      <?php require_once('../layouts/component/flash.php') ?>
+      <form class="form mt-4" action="" method="POST">
+        <div class="form-control">
+          <input type="text" name="username" class="w-100" placeholder="Username" required>
         </div>
-        <!-- End of Form -->
-        <div class="form-group">
-          <!-- Form -->
-          <div class="form-group mb-4">
-            <label for="password">Password</label>
-            <div class="input-group">
-              <input type="password" name="password" placeholder="Password" class="form-control" id="password" required>
-            </div>
-          </div>
-          <!-- End of Form -->
-          <div class="d-flex justify-content-between align-items-top mb-4">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="remember">
-              <label class="form-check-label mb-0" for="remember">
-                Ingat saya
-              </label>
-            </div>
-            <div><a href="./forgot-password.html" class="small text-right">Lupa password?</a></div>
-          </div>
+        <div class="form-control mt-3">
+          <input type="password" name="password" class="w-100" placeholder="Password" required>
         </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-secondary text-white">Masuk</button>
+        <div class="form-control mt-4">
+          <button type="submit" class="btn btn-secondary text-white w-100">Masuk</button>
         </div>
       </form>
     </div>

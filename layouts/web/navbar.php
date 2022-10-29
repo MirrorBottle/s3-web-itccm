@@ -5,6 +5,6 @@
     <div id="navbar-menu" class="col col-8 d-flex align-items-center justify-content-end">
         <a href="">Tentang</a>
         <a href="">Layanan</a>
-        <a href="" class="btn">Login</a>
+        <a href="../../auth/login.php" class="btn">Login</a>
     </div>
 </nav>
