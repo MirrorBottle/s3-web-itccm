@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("../../core/config.php");
 include("../../core/functions.php");
 if (!$_SESSION['is_login']) {
   header("location:../../index.php");
@@ -49,4 +48,4 @@ if (!$_SESSION['is_login']) {
     <?php require_once('navbar.php') ?>
     <div class="row">
       <?php require_once('sidebar.php') ?>
-      <div class="col-10 p-3">
+      <div class="col-11 p-3 bg-gray">

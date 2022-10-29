@@ -478,7 +478,19 @@ a {
 .card .card-body {
   padding: 2rem;
 }
+.card .card-header {
+  background: var(--primary);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.7rem;
+  color: #fff;
+}
 
+.card .card-header h1,
+.card .card-header h2,
+.card .card-header h3 {
+  margin: 0px;
+}
 /* * TABLE */
 table.dataTable thead tr th {
   background: var(--primary)!important;
