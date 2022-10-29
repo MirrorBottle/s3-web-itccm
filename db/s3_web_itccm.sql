@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 02:29 PM
+-- Generation Time: Oct 29, 2022 at 10:50 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.22
 
@@ -34,10 +34,18 @@ CREATE TABLE `auditors` (
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
   `address` text DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auditors`
+--
+
+INSERT INTO `auditors` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `birthday`, `address`, `photo`) VALUES
+(1, 'david', 'andri', 'david.andri@gmail.com', '082353123434', '2022-10-12', 'Jl. Kebahagiaan', 'david-andri.png'),
+(2, 'shyna', 'mala', 'shyna.mala@gmail.com', '081234567891', '1995-10-13', 'Jl. Konstruksi', 'shyna-mala.png');
 
 -- --------------------------------------------------------
 
@@ -51,6 +59,18 @@ CREATE TABLE `auditor_qualifications` (
   `standard_id` int(11) DEFAULT NULL,
   `expiration_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auditor_qualifications`
+--
+
+INSERT INTO `auditor_qualifications` (`id`, `auditor_id`, `standard_id`, `expiration_date`) VALUES
+(1, 1, 1, '2024-10-13'),
+(2, 1, 2, '2024-10-13'),
+(3, 2, 1, '2025-10-13'),
+(4, 2, 2, '2025-10-13'),
+(5, 2, 3, '2025-10-13'),
+(6, 2, 4, '2025-10-13');
 
 -- --------------------------------------------------------
 
@@ -69,6 +89,14 @@ CREATE TABLE `companies` (
   `homepage` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `registration_numbe`, `name`, `email`, `phone_number`, `address`, `fax_number`, `homepage`) VALUES
+(1, 'RQ1000', 'ADEKA', 'adeka@gmail.com', '082323232323', 'Jl. Kerinci', '346-8910', NULL),
+(2, 'RQ1100', 'LIXIL', 'lixil@gmail.com', '081100110011', 'Jl. Lixil', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -79,13 +107,22 @@ CREATE TABLE `examinations` (
   `id` int(11) NOT NULL,
   `company_id` int(11) DEFAULT NULL,
   `standard_id` int(11) DEFAULT NULL,
-  `registration_date` date NOT NULL,
   `examination_number` varchar(255) DEFAULT NULL,
+  `registration_date` date DEFAULT NULL,
   `examination_start_date` date DEFAULT NULL,
   `examination_end_date` date DEFAULT NULL,
   `expiration_date` date DEFAULT NULL,
+  `status` enum('1','2','3','4') NOT NULL DEFAULT '1',
   `note` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `examinations`
+--
+
+INSERT INTO `examinations` (`id`, `company_id`, `standard_id`, `examination_number`, `registration_date`, `examination_start_date`, `examination_end_date`, `expiration_date`, `status`, `note`) VALUES
+(1, 1, 1, 'QMS1000-1', '2022-10-06', '2022-11-01', '2023-01-30', '2025-01-30', '1', NULL),
+(2, 2, 2, 'EMS1100-1', '2022-10-06', '2022-11-01', '2023-01-30', '2025-10-13', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,6 +138,17 @@ CREATE TABLE `examination_auditors` (
   `end_date` date DEFAULT NULL,
   `position` enum('1','2') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `examination_auditors`
+--
+
+INSERT INTO `examination_auditors` (`id`, `examination_id`, `auditor_id`, `start_date`, `end_date`, `position`) VALUES
+(1, 1, 1, '2022-11-01', '2023-01-30', '1'),
+(2, 1, 2, '2022-11-01', '2022-12-23', '2'),
+(3, 1, 2, '2023-01-01', '2023-01-11', '2'),
+(4, 2, 2, '2022-11-01', '2022-12-16', '1'),
+(5, 2, 1, '2022-12-08', '2023-01-30', '2');
 
 -- --------------------------------------------------------
 
@@ -128,6 +176,18 @@ CREATE TABLE `examination_scopes` (
   `scope_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `examination_scopes`
+--
+
+INSERT INTO `examination_scopes` (`id`, `examination_id`, `scope_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 2, 7),
+(6, 1, 9);
+
 -- --------------------------------------------------------
 
 --
@@ -136,10 +196,26 @@ CREATE TABLE `examination_scopes` (
 
 CREATE TABLE `scopes` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `desc` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `scopes`
+--
+
+INSERT INTO `scopes` (`id`, `code`, `name`, `desc`) VALUES
+(1, '45.11', 'Penghancuran Struktur', 'Penghancuran Struktur'),
+(2, '45.12', 'Prospektik dan Boring', 'Prospektik dan Boring'),
+(3, '45.21', 'Pengecekan Bangunan General', 'Pengecekan Bangunan General'),
+(4, '45.22', 'Atap dan Kerangka', 'Atap dan Kerangka'),
+(5, '45.31', 'Instalasi Kabel Elektrik', 'Instalasi Kabel Elektrik'),
+(6, '45.32', 'Pemasangan Insulasi Suhu', 'Pemasangan Insulasi Suhu'),
+(7, '45.33', 'Pengecekan Saluran Air', 'Pengecekan Saluran Air'),
+(8, '45.41', 'Plastering', 'Plastering'),
+(9, '45.43', 'Lantai dan Dinding', 'Lantai dan Dinding'),
+(10, '45.44', 'Pengecatan dan Pengerjaan Jendela', 'Pengecatan dan Pengerjaan Jendela');
 
 -- --------------------------------------------------------
 
@@ -149,9 +225,20 @@ CREATE TABLE `scopes` (
 
 CREATE TABLE `standards` (
   `id` int(11) NOT NULL,
+  `code` varchar(20) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `desc` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `standards`
+--
+
+INSERT INTO `standards` (`id`, `code`, `name`, `desc`) VALUES
+(1, 'QMS', 'ISO 9001', 'Sistem Manajamen Mutu. Tujuan sertifikasi ini adalah untuk menjamin produk atau jasa yang dihasilkkan suatu perusahaan memenuhi persyaratan yang ditetapkan.'),
+(2, 'EMS', 'ISO 14001', 'Sistem Manajemen Lingkungan. Standarisasi segala aktivitas perusahaan dan dampak-dampaknya terhadap lingkungan.'),
+(3, 'OHSAS', 'ISO 50001', 'Sistem Manajemen Energi. Standarisasi internasional yang membantu mengurangi konsumsi, meminimalkan jejak karbon, dan memangkas biaya dengan mempromosikan penggunaan energi yang berkelanjutan.'),
+(4, 'AMS', 'ISO 55001', 'Sistem Manajemen Aset. Standar ini memberikan kerangka kerja untuk pembentukan dan pengaturan tujuan, kebijakan, proses, pemerintahan, dan fasilitas yang terlibat dalam usaha organisasi untuk mencapai tujuan dan sasaran mereka.');
 
 -- --------------------------------------------------------
 
@@ -167,6 +254,17 @@ CREATE TABLE `users` (
   `company_id` int(11) DEFAULT NULL,
   `auditor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `company_id`, `auditor_id`) VALUES
+(1, 'admin', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '1', NULL, NULL),
+(2, 'david.andri', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 1),
+(3, 'shyna.mala', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 2),
+(4, 'RQ1000', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 1, NULL),
+(5, 'RQ1100', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 2, NULL);
 
 --
 -- Indexes for dumped tables
@@ -242,7 +340,73 @@ ALTER TABLE `standards`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `auditor_id` (`auditor_id`),
+  ADD KEY `company_id` (`company_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `auditors`
+--
+ALTER TABLE `auditors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `auditor_qualifications`
+--
+ALTER TABLE `auditor_qualifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `examinations`
+--
+ALTER TABLE `examinations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `examination_auditors`
+--
+ALTER TABLE `examination_auditors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `examination_documents`
+--
+ALTER TABLE `examination_documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `examination_scopes`
+--
+ALTER TABLE `examination_scopes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `scopes`
+--
+ALTER TABLE `scopes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `standards`
+--
+ALTER TABLE `standards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -281,6 +445,13 @@ ALTER TABLE `examination_documents`
 ALTER TABLE `examination_scopes`
   ADD CONSTRAINT `examination_scopes_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`),
   ADD CONSTRAINT `examination_scopes_ibfk_2` FOREIGN KEY (`scope_id`) REFERENCES `scopes` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`),
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
