@@ -1,46 +1,38 @@
-
-<ul class="nav flex-column pt-3 pt-md-0">
-  <li class="nav-item">
-    <a href="<?= $_SESSION['role'] == 'admin' ? '../../admin/dashboard' : '../../user/dashboard' ?>" class="nav-link d-flex align-items-center justify-content-center">
-      <span class="sidebar-icon">
-        <img src="../../assets/img/logo.png" height="140">
-      </span>
-    </a>
-  </li>
-  <li class="nav-item  active ">
-    <a href="<?= $_SESSION['role'] == 'admin' ? '../../admin/dashboard' : '../../user/dashboard' ?>" class="nav-link">
-      <span class="sidebar-icon">
-        <i class="fa-solid fa-gauge-high"></i>
-      </span> 
-      <span class="sidebar-text">Dashboard</span>
-    </a>
-  </li>
-  <?php if($_SESSION['role'] == 'admin'): ?>
-    <li class="nav-item">
-    <a href="../../admin/book/create.php" class="nav-link d-flex justify-content-between">
-      <span>
-        <span class="sidebar-icon"><i class="fa-solid fa-plus"></i></span>
-        <span class="sidebar-text">Tambah Buku</span>
-      </span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="../../admin/book" class="nav-link d-flex justify-content-between">
-      <span>
-        <span class="sidebar-icon"><i class="fa-solid fa-book"></i></span>
-        <span class="sidebar-text">Daftar Buku</span>
-      </span>
-    </a>
-  </li>
-  <?php else: ?>
-    <li class="nav-item">
-    <a href="../../user/book" class="nav-link d-flex justify-content-between">
-      <span>
-        <span class="sidebar-icon"><i class="fa-solid fa-book"></i></span>
-        <span class="sidebar-text">Daftar Buku</span>
-      </span>
-    </a>
-  </li>
-  <?php endif ?>
-  
-</ul>
+<?php
+  $link = $_SERVER['PHP_SELF'];
+  $link_array = explode('/', $link);
+?>
+<aside class="col-1">
+  <ul>
+    <li class="<?= in_array("dashboard", $link_array) ? 'active' : ''  ?>">
+      <a href="../../admin/dashboard">
+        <i class="fa-solid fa-2x fa-bars-progress"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li class="<?= in_array("companies", $link_array) ? 'active' : ''  ?>">
+      <a href="../../admin/companies">
+        <i class="fa-solid fa-2x fa-building-flag"></i>
+        <span>Company</span>
+      </a>
+    </li>
+    <li class="<?= in_array("auditors", $link_array) ? 'active' : ''  ?>">
+      <a href="../../admin/auditors">
+        <i class="fa-solid fa-2x fa-user-tie"></i>
+        <span>Auditor</span>
+      </a>
+    </li>
+    <li class="<?= in_array("examinations", $link_array) ? 'active' : ''  ?>">
+      <a href="../../admin/examinations">
+        <i class="fa-solid fa-2x fa-people-group"></i>
+        <span>Examination</span>
+      </a>
+    </li>
+    <li class="<?= in_array("settings", $link_array) ? 'active' : ''  ?>">
+      <a href="../../admin/settings">
+        <i class="fa-solid fa-2x fa-gears"></i>
+        <span>Settings</span>
+      </a>
+    </li>
+  </ul>
+</aside>

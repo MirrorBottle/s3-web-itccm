@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-
-
 function query($query, $toObject = true) {
 	global $connection;
 	$result = mysqli_query($connection, $query);

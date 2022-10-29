@@ -1,15 +1,16 @@
 <?php
 
+session_start();
 include_once('../core/config.php');
 include_once('../core/functions.php');
 
 if (isset($_SESSION['is_login'])) {
+  
   $redirect = [
     '1' => 'admin',
     '2' => 'auditor',
     '3' => 'company'
   ][$_SESSION['user']->role];
-
   header("Location:../{$redirect}/dashboard/index.php");
 }
 

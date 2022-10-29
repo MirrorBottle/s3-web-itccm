@@ -1,3 +1,11 @@
+<?php 
+
+session_start();
+include_once('../../core/config.php');
+include_once('../../core/functions.php');
+
+?>
+
 <?php require_once('../../layouts/web/header.php') ?>
 
 <!-- Products Start -->
