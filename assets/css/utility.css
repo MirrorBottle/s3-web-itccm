@@ -457,15 +457,18 @@ a {
   padding: 0.6rem 1rem;
 }
 
-.btn:hover {
-  background: var(--secondary);
-}
-
 .btn.btn-danger {
   background: var(--danger);
 }
 
-.btn.btn-danger:hover {
+.btn.btn-outline-primary {
+  color: var(--primary)!important;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid var(--primary);
+}
+
+.btn:hover {
   filter: brightness(0.85);
 }
 /* * CARD */
@@ -492,6 +495,13 @@ a {
   margin: 0px;
 }
 /* * TABLE */
+
+.table-wrapper {
+  overflow-x: scroll;
+}
+.dataTables_filter {
+  padding-bottom: 10px;
+}
 table.dataTable thead tr th {
   background: var(--primary)!important;
   color: #fff;
@@ -503,26 +513,28 @@ form.form .form-control {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 2px;
 }
 
 form.form .form-control label {
-  width: 13rem!important;
   background: var(--primary);
   color: #fff;
   padding: 0.8rem 1rem;
   flex: 1 1 0px;
+  align-self: stretch;
 }
 
 form.form .form-control .input-wrapper {
   border: 1px solid #eaeaea;
   align-self: stretch;
-  flex: 7 1 0px;
+  flex: 6 1 0px;
   display: flex;
   align-items: center;
   padding: 0rem 0.5rem;
   background: #fff;
 }
-form.form .form-control input {
+form.form .form-control input,
+form.form .form-control textarea {
   margin: 0;
   padding: 7px 9px 8px;
   background: transparent;
@@ -534,9 +546,37 @@ form.form .form-control input {
 }
 
 form.form .form-control input:active,
-form.form .form-control input:focus {
+form.form .form-control input:focus,
+form.form .form-control textarea:active,
+form.form .form-control textarea:focus {
   outline: none !important;
   border-color: var(--primary);
+}
+
+/* * DESCRIPTION */
+.descriptions .description-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2px;
+}
+
+.descriptions .description-item .description-label {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  flex: 2 1 0px;
+  align-self: stretch;
+}
+
+.descriptions .description-item .description-value {
+  border: 1px solid #ddd;
+  align-self: stretch;
+  flex: 5 1 0px;
+  display: flex;
+  align-items: center;
+  padding: 0rem 0.5rem;
+  background: #fff;
 }
 
 @media (min-width: 576px) {
@@ -611,3 +651,31 @@ form.form .form-control input:focus {
   }
 }
 
+@media(max-width: 768px) {
+  form.form .form-control {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+    flex-direction: column;
+  }
+  form.form .form-control label {
+    align-self: auto!important;
+  }
+
+  .descriptions .description-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+    flex-direction: column;
+  }
+  
+  .descriptions .description-item .description-label {
+    align-self: auto!important;
+  }
+
+  .descriptions .description-item .description-value {
+    padding: 1rem 0.5rem;
+  }
+}

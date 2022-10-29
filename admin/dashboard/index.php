@@ -10,35 +10,38 @@
       <h3>Examination Berlangsung</h3>
     </div>
     <div class="card-body">
-      <table class="datatable-min">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Registration Number</th>
-            <th>Examination Number</th>
-            <th>Auditor</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($examinations as $examination): ?>
+      <div class="table-wrapper">
+
+        <table class="datatable">
+          <thead>
             <tr>
-              <td><?= $examination->company_name ?></td>
-              <td><?= $examination->registration_number ?></td>
-              <td><?= $examination->examination_number ?></td>
-              <td>
-                <?php foreach($examination->auditors as $auditor): ?>
-                  <span><?= $auditor->name ?></span><br>
-                <?php endforeach ?>
-              </td>
-              <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
-              <td><?= $examination->status_label ?></td>
+              <th>Company</th>
+              <th>Registration Number</th>
+              <th>Examination Number</th>
+              <th>Auditor</th>
+              <th>Tanggal</th>
+              <th>Status</th>
             </tr>
-          <?php endforeach ?>
-          
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <?php foreach($examinations as $examination): ?>
+              <tr>
+                <td><?= $examination->company_name ?></td>
+                <td><?= $examination->registration_number ?></td>
+                <td><?= $examination->examination_number ?></td>
+                <td>
+                  <?php foreach($examination->auditors as $auditor): ?>
+                    <span><?= $auditor->name ?></span><br>
+                  <?php endforeach ?>
+                </td>
+                <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
+                <td><?= $examination->status_label ?></td>
+              </tr>
+            <?php endforeach ?>
+            
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

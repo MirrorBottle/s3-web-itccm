@@ -13,7 +13,7 @@ nav#navbar #navbar-menu {
 
 /* * SIDEBAR */
 aside {
-  min-height: 88vh;
+  min-height: 100vh;
   background: var(--primary);
 }
 
