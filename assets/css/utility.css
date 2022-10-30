@@ -461,6 +461,18 @@ a {
   background: var(--danger);
 }
 
+.btn.btn-warning {
+  background: var(--warning);
+}
+
+.btn.btn-info {
+  background: var(--info);
+}
+
+.btn.btn-secondary {
+  background: var(--secondary);
+}
+
 .btn.btn-outline-primary {
   color: var(--primary)!important;
   font-weight: bold;
@@ -506,7 +518,6 @@ table.dataTable thead tr th {
   background: var(--primary)!important;
   color: #fff;
 }
-/* * INPUT */
 
 /* * FORM */
 form.form .form-control {
@@ -553,6 +564,10 @@ form.form .form-control textarea:focus {
   border-color: var(--primary);
 }
 
+form.form .form-control input:read-only {
+  background-color: #ddd;
+}
+
 /* * DESCRIPTION */
 .descriptions .description-item {
   display: flex;
@@ -567,6 +582,10 @@ form.form .form-control textarea:focus {
   padding: 0.8rem 1rem;
   flex: 2 1 0px;
   align-self: stretch;
+}
+
+.descriptions .description-item .description-label.small {
+  flex: 1 1 0px;
 }
 
 .descriptions .description-item .description-value {

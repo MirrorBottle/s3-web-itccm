@@ -15,6 +15,7 @@ function examination_list($extra_query = '', $options = [])
     JOIN standards ON examinations.standard_id = standards.id
     JOIN companies ON examinations.company_id = companies.id
     {$extra_query}
+    ORDER BY examinations.id DESC
   ");
 
   foreach ($examinations as $examination) {
@@ -46,9 +47,10 @@ function examination_list($extra_query = '', $options = [])
     if (isset($options['with_scopes'])) {
       $scopes = query("SELECT
           examination_scopes.id as examination_scope_id,
-          scopes.id = scope_id,
-          scopes.name = scope_name
-        FROM examination_auditors
+          scopes.id as scope_id,
+          scopes.code as scope_code,
+          scopes.name as scope_name
+        FROM examination_scopes
         JOIN scopes ON examination_scopes.scope_id = scopes.id
         WHERE examination_id={$examination->id}
       ");

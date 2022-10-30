@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-include_once('../../core/config.php');
+session_destroy();
 include_once('../../core/functions.php');
 
 ?>
