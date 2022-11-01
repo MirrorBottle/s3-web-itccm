@@ -1,19 +1,28 @@
 <?php require_once('../../layouts/admin/header.php') ?>
 
 <?php
-  if(isset($_POST['registration_number'])) {
-    $registrationNumExist = query("SELECT * FROM companies WHERE registration_number='{$_POST['registration_number']}'");
-    if(!empty($registrationNumExist)) {
-      flash("Registration Number sudah ada!", "error");
-      header('Location: '.$_SERVER['PHP_SELF']);
-    }
-    $company_id = store("companies", [], true);
-    flash("Registrasi berhasil! Silahkan melanjutkan ketahap pendaftaran examination", "success");
-    header("Location: ../examinations/registration.php?company_id=$company_id");
+if (isset($_POST['registration_number'])) {
+  $registrationNumExist = query("SELECT * FROM companies WHERE registration_number='{$_POST['registration_number']}'");
+  if (!empty($registrationNumExist)) {
+    flash("Registration Number sudah ada!", "error");
+    header('Location: ' . $_SERVER['PHP_SELF']);
   }
+  $company_id = store("companies", [], true);
+  $user = store("users", [
+    "username" => $_POST['registration_number'],
+    "password" => password_hash($_POST['registration_number'], PASSWORD_DEFAULT),
+    "role" => 3,
+    "company_id" => $company_id
+  ]);
+  flash("Registrasi berhasil! Silahkan melanjutkan ketahap pendaftaran examination", "success");
+  header("Location: ../examinations/registration.php?company_id=$company_id");
+}
 ?>
 
 <section>
+  <div class="alert alert-success mb-4">
+    <p>Akun akan otomatis dibuat dengan username dan password default yaitu <b>Registration Number</b></p>
+  </div>
   <div class="card">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">

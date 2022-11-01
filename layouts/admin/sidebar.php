@@ -30,8 +30,8 @@
     </li>
     <li class="<?= in_array("settings", $link_array) ? 'active' : ''  ?>">
       <a href="../../admin/settings">
-        <i class="fa-solid fa-2x fa-gears"></i>
-        <span>Settings</span>
+        <i class="fa-solid fa-2x fa-database"></i>
+        <span>Master</span>
       </a>
     </li>
   </ul>

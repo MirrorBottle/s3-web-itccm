@@ -128,7 +128,7 @@ function flash($message, $type) {
 	$_SESSION['flash'][$type] = $message;
 }
 
-function format_date($date, $format) {
+function format_date($date, $format = "d/m/Y") {
 	$interface = date_create($date);
 	return date_format($interface, $format);
 }

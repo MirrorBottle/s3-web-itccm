@@ -4,6 +4,12 @@ session_start();
 session_destroy();
 include_once('../../core/functions.php');
 
+if(isset($_GET['search']) && $_GET['search'] != '') {
+  $search = htmlspecialchars($_GET['search']);
+  $examinations = examination_list("WHERE companies.name LIKE '%$search%'");
+} else {
+  $examinations = [];
+}
 ?>
 
 <?php require_once('../../layouts/web/header.php') ?>
@@ -21,7 +27,7 @@ include_once('../../core/functions.php');
         <div class="form-control">
           <label for="">Nama Perusahaan</label>
           <div class="input-wrapper">
-            <input type="text" class="w-100">
+            <input type="text" class="w-100" name="search" value="<?= $_GET['search'] ?>" autocomplete="off">
           </div>
         </div>
 
@@ -47,6 +53,16 @@ include_once('../../core/functions.php');
           <th>Tanggal Examination</th>
         </tr>
       </thead>
+      <tbody>
+        <?php foreach($examinations as $examination): ?>
+          <tr>
+            <td><?= $examination->registration_number ?></td>
+            <td><?= $examination->examination_number ?></td>
+            <td><?= $examination->standard_name ?></td>
+            <td><?= format_date($examination->examination_start_date) ?> ~ <?= format_date($examination->examination_end_date) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
     </table>
   </section>
 </main>
