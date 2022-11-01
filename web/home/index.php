@@ -16,7 +16,7 @@ if(isset($_GET['search']) && $_GET['search'] != '') {
 
 <!-- Products Start -->
 <main class="container-fluid">
-  <h1 class="heading">Pencarian Organisasi Sertifikasi Manajemen</h1>
+  <h1 class="heading">Pencarian Sertifikasi Perusahaan</h1>
 
 
   <section style="margin-top: 5rem;">
@@ -27,7 +27,7 @@ if(isset($_GET['search']) && $_GET['search'] != '') {
         <div class="form-control">
           <label for="">Nama Perusahaan</label>
           <div class="input-wrapper">
-            <input type="text" class="w-100" name="search" value="<?= $_GET['search'] ?>" autocomplete="off">
+            <input type="text" class="w-100" name="search" value="<?= $_GET['search'] ?? '' ?>" autocomplete="off">
           </div>
         </div>
 
