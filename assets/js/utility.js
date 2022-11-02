@@ -3,21 +3,21 @@ $(function () {
   const DATATABLE_LANGUAGE = {
     "decimal": "",
     "emptyTable": "Tidak ada data",
-    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-    "infoEmpty": "Showing 0 to 0 of 0 entries",
-    "infoFiltered": "(filtered from _MAX_ total entries)",
+    "info": "Tampilkan _START_ sampai _END_ dari _TOTAL_ data",
+    "infoEmpty": "Data Kosong",
+    "infoFiltered": "(filter dari _MAX_ total data)",
     "infoPostFix": "",
     "thousands": ",",
-    "lengthMenu": "Show _MENU_ entries",
+    "lengthMenu": "Tampilkan _MENU_ data",
     "loadingRecords": "Loading...",
     "processing": "",
-    "search": "Search:",
-    "zeroRecords": "No matching records found",
+    "search": "Pencarian:",
+    "zeroRecords": "Data tidak ditemukan",
     "paginate": {
-      "first": "First",
-      "last": "Last",
-      "next": "Next",
-      "previous": "Previous"
+      "first": "Pertama",
+      "last": "Terakhir",
+      "next": "Selanjutnya",
+      "previous": "Sebelumnya"
     },
     "aria": {
       "sortAscending": ": activate to sort column ascending",

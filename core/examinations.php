@@ -3,8 +3,9 @@
 require_once('functions.php');
 
 
-function examination_list($extra_query = '', $options = [])
+function examination_list($extra_query = '', $options = [], $auditor_id = null, $company_id = null)
 {
+  $per_auditor = $auditor_id ? "JOIN examination_auditors ON examinations.id = examination_auditors.examination_id AND examination_auditors.auditor_id=$auditor_id" : "";
   $examinations = query("
     SELECT
       examinations.*,
@@ -15,6 +16,7 @@ function examination_list($extra_query = '', $options = [])
     JOIN standards ON examinations.standard_id = standards.id
     JOIN companies ON examinations.company_id = companies.id
     {$extra_query}
+    {$per_auditor}
     ORDER BY examinations.id DESC
   ");
 
@@ -40,7 +42,8 @@ function examination_list($extra_query = '', $options = [])
           examination_auditors.position as position
         FROM examination_auditors
         JOIN auditors ON examination_auditors.auditor_id = auditors.id
-        WHERE examination_id={$examination->id}");
+        WHERE examination_id={$examination->id}
+      ");
       $examination->schedules = $schedules;
     }
 
