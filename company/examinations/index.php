@@ -2,7 +2,7 @@
 
 <?php
   $company_id = $_SESSION['user']->company_id;
-  $examinations = examination_list("WHERE examinations.company_id=$company_id AND examinations.status IN (1, 2, 3)", [
+  $examinations = examination_list("WHERE examinations.company_id=$company_id", [
     'with_auditors' => true,
     'with_schedules' => true
   ]);
@@ -11,7 +11,7 @@
 <section>
   <div class="card">
     <div class="card-header">
-      <h3>Examination Berlangsung</h3>
+      <h3>Histori Examination</h3>
     </div>
     <div class="card-body">
       <div class="table-wrapper">

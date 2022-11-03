@@ -58,6 +58,24 @@ $link_array = explode('/', $link);
       </li>
     <?php else : ?>
       <!-- COMPANY -->
+      <li class="<?= in_array("dashboard", $link_array) ? 'active' : ''  ?>">
+        <a href="../../company/dashboard">
+          <i class="fa-solid fa-2x fa-bars-progress"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="<?= in_array("profile", $link_array) ? 'active' : ''  ?>">
+        <a href="../../company/profile">
+        <i class="fa-solid fa-2x fa-building-user"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li class="<?= in_array("examinations", $link_array) ? 'active' : ''  ?>">
+        <a href="../../company/examinations">
+        <i class="fa-solid fa-2x fa-folder-open"></i>
+          <span>Examination</span>
+        </a>
+      </li>
     <?php endif ?>
   </ul>
 </aside>
