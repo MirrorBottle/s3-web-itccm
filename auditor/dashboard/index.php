@@ -2,7 +2,11 @@
 
 <?php
   $auditor_id = $_SESSION['user']->auditor_id;
-  $examinations = examination_list("", ['with_auditors' => true, 'with_schedules' => true], $auditor_id);
+  $examinations = examination_list("", [
+    'with_auditors' => true,
+    'with_schedules' => true,
+    'auditor_id' => $auditor_id
+  ]);
 ?>
 
 <section>

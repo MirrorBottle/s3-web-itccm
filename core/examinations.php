@@ -3,9 +3,9 @@
 require_once('functions.php');
 
 
-function examination_list($extra_query = '', $options = [], $auditor_id = null, $company_id = null)
+function examination_list($extra_query = '', $options = [])
 {
-  $per_auditor = $auditor_id ? "JOIN examination_auditors ON examinations.id = examination_auditors.examination_id AND examination_auditors.auditor_id=$auditor_id" : "";
+  $per_auditor = isset($options["auditor_id"]) ? "JOIN examination_auditors ON examinations.id = examination_auditors.examination_id AND examination_auditors.auditor_id={$options["auditor_id"]}" : "";
   $examinations = query("
     SELECT
       examinations.*,
