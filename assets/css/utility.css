@@ -47,13 +47,20 @@ a {
 }
 
 .bg-accent {
-  background: var(--accent);
+  background: var(--accent)!important;
 }
 
 .bg-gray {
-  background: var(--gray);
+  background: var(--gray)!important;
 }
 
+.bg-info {
+  background: var(--info)!important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /* * TEXT */
 .font-light {
   font-weight: lighter!important;

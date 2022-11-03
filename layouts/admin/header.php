@@ -48,7 +48,7 @@ if (!$_SESSION['is_login']) {
     <?php require_once('navbar.php') ?>
     <div class="row bg-gray">
       <?php require_once('sidebar.php') ?>
-      <div class="col-11 p-4 bg-gray mt-3">
+      <div class="col-11 p-4 bg-gray mt-3" style="overflow: hidden!important;">
         <div class="mb-3">
           <?php require_once('../../layouts/component/flash.php') ?>
         </div>

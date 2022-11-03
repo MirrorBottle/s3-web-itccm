@@ -34,6 +34,6 @@ $(function () {
     language: DATATABLE_LANGUAGE
   });
   // * SELECT2
-
+  $('.select2').select2()
   // * QUILL
 })

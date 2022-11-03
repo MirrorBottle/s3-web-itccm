@@ -46,6 +46,26 @@ aside ul li.active {
   background-color: var(--secondary)!important;
 }
 
+/* * REGISTRATION FORM */
+
+#registration #registration-scopes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  height: 200px;
+  overflow-y: scroll;
+}
+#registration-scopes .registration-scope {
+  display: flex;
+}
+#registration-scopes .registration-scope label {
+  cursor: pointer;
+}
+#registration-scopes .registration-scope input {
+  margin: 10px!important;
+}
+
 @media(max-width: 768px) {
   aside {
     min-height: 0px;

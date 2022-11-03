@@ -49,7 +49,30 @@ function store($table, $data = [], $is_return_id = false) {
 	$query = "INSERT INTO $table ($fields) VALUES ($values)";
 	$result = mysqli_query($connection, $query);
 	return $is_return_id ? mysqli_insert_id($connection) : mysqli_affected_rows($connection) > 0;
-	
+}
+
+function store_bulk($table, $datas) {
+	global $connection;
+	$fields = [];
+	$values = [];
+	foreach ($datas as $idx => $data) {
+		$vals = [];
+		foreach($data as $key => $value) {
+			if($idx == 0) {
+				$fields[] = $key;
+			}
+			$value = htmlspecialchars($value);
+			$vals[] = "'$value'";
+		}
+		$vals = join(", ", $vals);
+		$values[] = "($vals)";
+		$vals = [];
+	}
+	$fields = join(", ", $fields);
+	$values = join(", ", $values);
+	$query = "INSERT INTO $table ($fields) VALUES $values";
+	$result = mysqli_query($connection, $query);
+	return mysqli_affected_rows($connection) > 0;
 }
 
 function update($table, $data = []) {

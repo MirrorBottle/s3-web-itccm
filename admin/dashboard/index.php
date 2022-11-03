@@ -1,7 +1,7 @@
 <?php require_once('../../layouts/admin/header.php') ?>
 
 <?php
-  $examinations = examination_list('', ['with_auditors' => true]);
+  $examinations = examination_list('WHERE examinations.status IN (1, 2, 3)', ['with_auditors' => true]);
 ?>
 
 <section>
