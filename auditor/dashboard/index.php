@@ -2,7 +2,7 @@
 
 <?php
   $auditor_id = $_SESSION['user']->auditor_id;
-  $examinations = examination_list("", [
+  $examinations = examination_list("WHERE examinations.status IN (2, 3)", [
     'with_auditors' => true,
     'with_schedules' => true,
     'auditor_id' => $auditor_id
