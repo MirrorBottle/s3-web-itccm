@@ -80,7 +80,7 @@ INSERT INTO `auditor_qualifications` (`id`, `auditor_id`, `standard_id`, `expira
 
 CREATE TABLE `companies` (
   `id` int(11) NOT NULL,
-  `registration_numbe` varchar(255) DEFAULT NULL,
+  `registration_number` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
