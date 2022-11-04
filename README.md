@@ -12,7 +12,7 @@
 | Judul             | ITCCM                               |
 |-------------------|-------------------------------------|
 | Tema              | Third-Party ISO Certificate Handler |
-| Matkul            | Pemrograman Web                   P |
+| Matkul            | Pemrograman Web                     |
 | Angkatan          | Semester 3 - 2021                   |
 
 ## Anggota
