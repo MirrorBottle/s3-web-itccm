@@ -93,7 +93,7 @@ CREATE TABLE `companies` (
 -- Dumping data for table `companies`
 --
 
-INSERT INTO `companies` (`id`, `registration_numbe`, `name`, `email`, `phone_number`, `address`, `fax_number`, `homepage`) VALUES
+INSERT INTO `companies` (`id`, `registration_number`, `name`, `email`, `phone_number`, `address`, `fax_number`, `homepage`) VALUES
 (1, 'RQ1000', 'ADEKA', 'adeka@gmail.com', '082323232323', 'Jl. Kerinci', '346-8910', NULL),
 (2, 'RQ1100', 'LIXIL', 'lixil@gmail.com', '081100110011', 'Jl. Lixil', NULL, NULL);
 
