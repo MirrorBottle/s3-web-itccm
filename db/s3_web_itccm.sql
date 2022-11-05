@@ -44,8 +44,8 @@ CREATE TABLE `auditors` (
 --
 
 INSERT INTO `auditors` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `birthday`, `address`, `photo`) VALUES
-(1, 'david', 'andri', 'david.andri@gmail.com', '082353123434', '2022-10-12', 'Jl. Kebahagiaan', 'david-andri.png'),
-(2, 'shyna', 'mala', 'shyna.mala@gmail.com', '081234567891', '1995-10-13', 'Jl. Konstruksi', 'shyna-mala.png');
+(1, 'david', 'andri', 'david.andri@gmail.com', '082353123434', '2022-10-12', 'Jl. Kebahagiaan', 'david-andri.jpg'),
+(2, 'shyna', 'mala', 'shyna.mala@gmail.com', '081234567891', '1995-10-13', 'Jl. Konstruksi', 'shyna-mala.jpg');
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,7 @@ ALTER TABLE `auditor_qualifications`
 --
 ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `registration_numbe` (`registration_numbe`);
+  ADD UNIQUE KEY `registration_number` (`registration_number`);
 
 --
 -- Indexes for table `examinations`
@@ -416,42 +416,42 @@ ALTER TABLE `users`
 -- Constraints for table `auditor_qualifications`
 --
 ALTER TABLE `auditor_qualifications`
-  ADD CONSTRAINT `auditor_qualifications_ibfk_1` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`),
-  ADD CONSTRAINT `auditor_qualifications_ibfk_2` FOREIGN KEY (`standard_id`) REFERENCES `standards` (`id`);
+  ADD CONSTRAINT `auditor_qualifications_ibfk_1` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `auditor_qualifications_ibfk_2` FOREIGN KEY (`standard_id`) REFERENCES `standards` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `examinations`
 --
 ALTER TABLE `examinations`
-  ADD CONSTRAINT `examinations_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
-  ADD CONSTRAINT `examinations_ibfk_2` FOREIGN KEY (`standard_id`) REFERENCES `standards` (`id`);
+  ADD CONSTRAINT `examinations_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `examinations_ibfk_2` FOREIGN KEY (`standard_id`) REFERENCES `standards` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `examination_auditors`
 --
 ALTER TABLE `examination_auditors`
-  ADD CONSTRAINT `examination_auditors_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`),
-  ADD CONSTRAINT `examination_auditors_ibfk_2` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`);
+  ADD CONSTRAINT `examination_auditors_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `examination_auditors_ibfk_2` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `examination_documents`
 --
 ALTER TABLE `examination_documents`
-  ADD CONSTRAINT `examination_documents_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`);
+  ADD CONSTRAINT `examination_documents_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `examination_scopes`
 --
 ALTER TABLE `examination_scopes`
-  ADD CONSTRAINT `examination_scopes_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`),
-  ADD CONSTRAINT `examination_scopes_ibfk_2` FOREIGN KEY (`scope_id`) REFERENCES `scopes` (`id`);
+  ADD CONSTRAINT `examination_scopes_ibfk_1` FOREIGN KEY (`examination_id`) REFERENCES `examinations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `examination_scopes_ibfk_2` FOREIGN KEY (`scope_id`) REFERENCES `scopes` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`auditor_id`) REFERENCES `auditors` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

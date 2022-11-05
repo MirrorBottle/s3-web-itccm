@@ -22,9 +22,14 @@ if (isset($_POST['examination_id'])) {
   if (!isset($_POST['auditors'])) {
     flash("Jadwal masih tidak ada!", "error");
     header('Location: ' . $_SERVER['PHP_SELF']);
+    return;
   }
   $examination_id = $_GET['examination_id'];
   store_bulk("examination_auditors", $_POST['auditors']);
+  update("examinations", [
+    "id" => $examination_id,
+    "status" => 2
+  ]);
   flash("Penjadwalan Examination berhasil! Silahkan melanjutkan ke tahap persetujuan", "success");
   header("Location: ../examinations/approval.php?examination_id=");
 }
