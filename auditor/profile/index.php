@@ -2,7 +2,6 @@
 
 <?php
 
-
 $auditor_id = $_SESSION['user']->auditor_id;
 
 $auditor = find("auditors", $_SESSION['user']->auditor_id);
@@ -18,8 +17,6 @@ WHERE auditor_qualifications.auditor_id = $auditor_id
 ");
 
 $user = find("users", $_SESSION['user']->id);
-
-
 
 if (isset($_POST['password_baru'])) {
   $isPasswordCorrect = password_verify($_POST['password_lama'], $user->password);
