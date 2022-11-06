@@ -103,7 +103,7 @@ function delete_multiple($table, $ids) {
 	return mysqli_affected_rows($connection) > 0;
 }
 
-function upload($field, $path = '../storage/auditors/') {
+function upload($field, $path = '../storage/auditors/', $prefix = null) {
 	$namaFile = $_FILES[$field]['name'];
 	$ukuranFile = $_FILES[$field]['size'];
 	$error = $_FILES[$field]['error'];
@@ -112,7 +112,7 @@ function upload($field, $path = '../storage/auditors/') {
 	$ekstensiGambar = explode('.', $namaFile);
 	$ekstensiGambar = strtolower(end($ekstensiGambar));
 
-	$file = uniqid();
+	$file = $prefix ? $prefix . "-" . uniqid() : uniqid();
 	$file .= '.';
 	$file .= $ekstensiGambar;
 	move_uploaded_file($tmpName, "$path$file");

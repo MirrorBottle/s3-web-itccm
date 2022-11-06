@@ -24,10 +24,10 @@ if (isset($_POST['username'])) {
 
   $user = $user[0];
   $isPasswordCorrect = password_verify($_POST['password'], $user->password);
-  
   if(!$isPasswordCorrect) {
     flash('Password salah!', 'error');
     header("Location:./login.php");
+    return;
   }
 
   $_SESSION['user'] = $user;

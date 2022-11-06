@@ -15,7 +15,7 @@ if (isset($_POST['registration_number'])) {
     "company_id" => $company_id
   ]);
   flash("Registrasi berhasil! Silahkan melanjutkan ketahap pendaftaran examination", "success");
-  header("Location: ../examinations/registration.php?company_id=$company_id");
+  header("Location: ../examinations/create.php?company_id=$company_id");
 }
 ?>
 

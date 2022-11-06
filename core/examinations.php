@@ -13,6 +13,12 @@ function examination_documents($documents) {
   $examination_plan = null;
   $payment = null;
 
+  $document_names = [
+    'approval'         => 'Approval ITCCM',
+    'examination_plan' => 'Examination Plan Auditor',
+    'payment'          => 'Pembayaran Company',
+  ];
+
   foreach($documents as $document) {
     switch ($document->document_type) {
       case '1':
@@ -28,18 +34,21 @@ function examination_documents($documents) {
   }
   return [
     (object) [
+      'type_id' => 1,
       'type' => 'approval',
-      'name' => 'Approval ITCCM',
+      'name' => $document_names['approval'],
       'document' => $approval
     ],
     (object) [
+      'type_id' => 2,
       'type' => 'examination_plan',
-      'name' => 'Examination Plan Auditor',
+      'name' => $document_names['examination_plan'],
       'document' => $examination_plan
     ],
     (object) [
+      'type_id' => 3,
       'type' => 'payment',
-      'name' => 'Company Payment',
+      'name' => $document_names['payment'],
       'document' => $payment
     ],
   ];

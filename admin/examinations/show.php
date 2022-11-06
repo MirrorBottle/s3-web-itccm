@@ -10,6 +10,9 @@ $examination = examination_show($_GET['id']);
 ?>
 
 <section id="registration">
+  <!-- <div class="alert alert-danger mb-3">
+    <p>Dokumen <b>Approval ITCCM</b> belum di-upload. Mohon segera upload dokumen berikut untuk melanjutkan ke tahap <b>Proses</b></p>
+  </div> -->
   <div class="card mb-3">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
@@ -175,18 +178,28 @@ $examination = examination_show($_GET['id']);
             </tr>
           </thead>
           <tbody>
-            <?php foreach($examination->documents as $document): ?>
+            <?php foreach ($examination->documents as $document) : ?>
               <tr>
                 <td><?= $document->name ?></td>
                 <td><?= $document->document ? format_date($document->document->uploaded_at) : 'Tidak ada' ?></td>
                 <td>
-                  <?php if($document->document): ?>
-                    <a href="../../storage/examinations/<?= $document->document->file ?>" download>
-                      <i class="fa-download fa-upload"></i>
-                    </a>
-                  <?php else: ?>
-                    <p>Tidak ada</p>
-                  <?php endif; ?>
+                  <div class="p-2">
+                    <?php if ($document->document) : ?>
+                      <a class="btn btn-sm btn-info" href="../../storage/examinations/<?= $document->document->file ?>" download>
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download</span>
+                      </a>
+                    <?php else : ?>
+                      <?php if ($document->type == 'approval') : ?>
+                        <a class="btn btn-sm" href="../examinations-document/create.php?document_type=<?= $document->type_id ?>&examination_id=<?= $examination->id ?>">
+                          <i class="fa-solid fa-upload"></i>
+                          <span>Upload</span>
+                        </a>
+                      <?php else : ?>
+                        <span>Tidak ada</span>
+                      <?php endif; ?>
+                    <?php endif; ?>
+                  </div>
                 </td>
               </tr>
             <?php endforeach; ?>

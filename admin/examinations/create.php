@@ -42,7 +42,7 @@ if (isset($_POST['examination_number'])) {
   }
 
   flash("Examination berhasil diregistrasi! Silahkan melanjutkan ketahap penjadwalan", "success");
-  header("Location: ../examinations/scheduling.php?examination_id=$examination_id");
+  header("Location: ../examination-schedules/create.php?examination_id=$examination_id");
 }
 
 ?>

@@ -30,7 +30,7 @@ if (isset($_POST['examination_id'])) {
     "status" => 2
   ]);
   flash("Penjadwalan Examination berhasil! Silahkan melanjutkan ke tahap persetujuan", "success");
-  header("Location: ../examinations/approval.php?examination_id=");
+  header("Location: ../examinations/show.php?examination_id=" . $examination_id);
 }
 
 ?>
@@ -52,14 +52,14 @@ if (isset($_POST['examination_id'])) {
         </div>
         <div class="col col-6">
           <div class="description-item">
-            <div class="description-label">Registration Number</div>
-            <div class="description-value"><?= $examination->registration_number ?></div>
+            <div class="description-label">Periode</div>
+            <div class="description-value"><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></div>
           </div>
         </div>
         <div class="col col-6">
           <div class="description-item">
-            <div class="description-label">Periode</div>
-            <div class="description-value"><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></div>
+            <div class="description-label">Registration Number</div>
+            <div class="description-value"><?= $examination->registration_number ?></div>
           </div>
         </div>
         <div class="col col-6">
@@ -107,6 +107,7 @@ if (isset($_POST['examination_id'])) {
         $(this).html(`Jadwal ${idx + 1}`)
       })
     }
+
     function createSchedule() {
       total_schedules++;
       const idx = total_schedules;
@@ -157,7 +158,7 @@ if (isset($_POST['examination_id'])) {
     createSchedule();
 
     $(document).on('click', '.delete-schedule-btn', function() {
-      if(total_schedules != 1) {
+      if (total_schedules != 1) {
         const id = $(this).data('id');
         $(`#schedule-${id}`).remove();
         total_schedules--;
