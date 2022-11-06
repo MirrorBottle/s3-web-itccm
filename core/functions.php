@@ -41,7 +41,7 @@ function store($table, $data = [], $is_return_id = false) {
 	$values = [];
 	foreach ($data as $key => $value) {
 		$value = htmlspecialchars($value);
-		$fields[] = $key;
+		$fields[] = "`$key`";
 		$values[] = "'$value'";
 	}
 	$fields = join(", ", $fields);
