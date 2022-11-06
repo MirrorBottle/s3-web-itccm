@@ -38,7 +38,7 @@ $standards = all("standards");
                     <a href="./edit.php?id=<?= $standard->id ?>" class="btn btn-sm btn-warning mr-1">
                       <i class="fa-solid fa-pen ml-1"></i>
                     </a>
-                    <a data-url="../../admin/companies/delete.php?id=<?= $standard->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
+                    <a data-url="../../admin/master-standards/delete.php?id=<?= $standard->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
                       <i class="fa-solid fa-trash-can ml-1"></i>
                     </a>
                   </div>
