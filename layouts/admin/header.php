@@ -27,16 +27,10 @@ if (!$_SESSION['is_login']) {
   <script src="https://kit.fontawesome.com/298ddad7ce.js" crossorigin="anonymous"></script>
 
   <!-- SELECT2 -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="../../assets/vendor/select2/style.min.css" rel="stylesheet" />
 
   <!-- DATATABLE -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
-
-  <!-- DATETIME PICKER -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- QUILL -->
-  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link href="../../assets/vendor/datatable/style.min.css" rel="stylesheet" />
 
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../../assets/css/utility.css" rel="stylesheet">
