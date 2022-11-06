@@ -82,7 +82,7 @@ function update($table, $data = []) {
 	$values = [];
 	foreach ($data as $key => $value) {
 		$value = htmlspecialchars($value);
-		$values[] = "$key = '$value'";
+		$values[] = "`$key` = '$value'";
 	}
 	$values = join(", ", $values);
 	$query = "UPDATE $table SET $values WHERE id = $id";
