@@ -15,7 +15,7 @@ $document_type_name = [
   '3' => 'Pembayaran Company',
 ][$document_type];
 
-$examination = examination_show($_GET['examination_id']);
+$examination = examination_show($examination_id);
 
 if (isset($_FILES['document'])) {
   $document_type_label = [
@@ -26,12 +26,20 @@ if (isset($_FILES['document'])) {
 
   $prefix = $examination->examination_number . "-" . $document_type_label;
   $file = upload("document", "../../storage/examinations/", $prefix);
+
   store("examination_documents", [
     "examination_id" => $examination_id,
     "document_type" => $document_type,
     "uploaded_at" => date('Y-m-d H:i:s'),
     "file" => $file
   ]);
+
+  // * UPDATE EXAMINATION STATUS
+  update("examinations", [
+    "id" => $examination_id,
+    "status" => 3
+  ]);
+
   flash("Tambah dokumen {$document_type_name} berhasil!", "success");
   header("Location: ../examinations/show.php?id=$examination_id");
 }
@@ -86,12 +94,6 @@ if (isset($_FILES['document'])) {
           <label for="">Tipe Dokumen</label>
           <div class="input-wrapper">
             <input type="text" class="w-100" name="document_type" value="<?= $document_type_name ?>" readonly>
-          </div>
-        </div>
-        <div class="form-control">
-          <label for="">Waktu Upload</label>
-          <div class="input-wrapper">
-            <input type="text" class="w-100" name="uploaded_at" value="<?= date('d/m/Y H:i:s') ?>" readonly>
           </div>
         </div>
         <div class="form-control">
