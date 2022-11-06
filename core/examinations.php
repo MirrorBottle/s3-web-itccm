@@ -5,7 +5,8 @@ require_once('functions.php');
 
 function examination_list($extra_query = '', $options = [])
 {
-  $per_auditor = isset($options["auditor_id"]) ? "JOIN examination_auditors ON examinations.id = examination_auditors.examination_id AND examination_auditors.auditor_id={$options["auditor_id"]}" : "";  
+  $per_auditor = isset($options["auditor_id"]) ? "JOIN examination_auditors ON examinations.id = examination_auditors.examination_id AND examination_auditors.auditor_id={$options["auditor_id"]}" : "";
+  
   $examinations = query("
     SELECT
       examinations.*,
@@ -25,10 +26,15 @@ function examination_list($extra_query = '', $options = [])
     if (isset($options['with_auditors'])) {
       $auditors = query("SELECT
           DISTINCT examination_auditors.auditor_id as id,
-          CONCAT(auditors.first_name, ' ', auditors.last_name) as name
+          CONCAT(auditors.first_name, ' ', auditors.last_name) as name,
+          auditors.photo as photo,
+          auditors.email as email,
+          auditors.phone_number as phone_number,
+          examination_auditors.position as position
         FROM examination_auditors
         JOIN auditors ON examination_auditors.auditor_id = auditors.id
-        WHERE examination_id={$examination->id}");
+        WHERE examination_id={$examination->id}
+        ORDER BY examination_auditors.position");
       $examination->auditors = $auditors;
     }
 
@@ -79,6 +85,7 @@ function examination_list($extra_query = '', $options = [])
 function examination_show($id)
 {
   $examinations = examination_list("WHERE examinations.id = $id", [
+    'with_schedules' => true,
     'with_auditors' => true,
     'with_scopes' => true,
     'with_documents' => true
