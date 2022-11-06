@@ -11,6 +11,21 @@ nav#navbar #navbar-menu {
   gap: 1.2rem;
 }
 
+nav#navbar .logout-btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--danger);
+  color: #fff!important;
+  font-weight: bold;
+}
+
+nav#navbar .logout-btn:hover {
+  filter: brightness(0.85);
+}
+
 /* * SIDEBAR */
 aside {
   min-height: 100vh;

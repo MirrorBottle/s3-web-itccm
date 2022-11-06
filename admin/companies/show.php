@@ -75,17 +75,18 @@ $examinations = examination_list("WHERE companies.id = {$company->id}", ['with_a
       <table class="datatable">
         <thead>
           <tr>
+            <th>Status</th>
             <th>Examination Number</th>
             <th>Scope</th>
             <th>Auditor</th>
             <th>Tanggal</th>
-            <th>Status</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($examinations as $examination) : ?>
             <tr>
+              <td><?= $examination->status_label ?></td>
               <td><?= $examination->examination_number ?></td>
               <td>
                 <?php foreach ($examination->scopes as $scope) : ?>
@@ -98,7 +99,6 @@ $examinations = examination_list("WHERE companies.id = {$company->id}", ['with_a
                 <?php endforeach ?>
               </td>
               <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
-              <td><?= $examination->status_label ?></td>
               <td>
                 <a href="./show.php?id=<?= $examination->id ?>" class="btn btn-sm btn-info mr-1">
                   <i class="fa-solid fa-circle-info"></i>

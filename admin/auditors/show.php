@@ -134,18 +134,20 @@ $examinations = examination_list("GROUP BY examination_auditors.examination_id",
       <table id="auditor-examinations" class="datatable">
         <thead>
           <tr>
+            <th>Status</th>
             <th>Nama Perusahaan</th>
             <th>Registration Number</th>
             <th>Examination Number</th>
             <th>Auditor</th>
             <th>Tanggal</th>
-            <th>Status</th>
+            
             <th></th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($examinations as $examination) : ?>
             <tr>
+              <td><?= $examination->status_label ?></td>
               <td><?= $examination->company_name ?></td>
               <td><?= $examination->registration_number ?></td>
               <td><?= $examination->examination_number ?></td>
@@ -155,7 +157,6 @@ $examinations = examination_list("GROUP BY examination_auditors.examination_id",
                 <?php endforeach ?>
               </td>
               <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
-              <td><?= $examination->status_label ?></td>
               <td>
                 <a href="./show.php?id=<?= $examination->id ?>" class="btn btn-sm btn-info mr-1">
                   <i class="fa-solid fa-circle-info"></i>

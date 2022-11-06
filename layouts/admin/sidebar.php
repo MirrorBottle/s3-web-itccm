@@ -30,8 +30,8 @@ $link_array = explode('/', $link);
           <span>Examination</span>
         </a>
       </li>
-      <li class="<?= in_array("settings", $link_array) ? 'active' : ''  ?>">
-        <a href="../../admin/settings">
+      <li class="<?= in_array("master", $link_array) ? 'active' : ''  ?>">
+        <a href="../../admin/master">
           <i class="fa-solid fa-2x fa-database"></i>
           <span>Master</span>
         </a>

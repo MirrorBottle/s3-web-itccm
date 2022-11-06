@@ -20,17 +20,18 @@
         <table class="datatable">
           <thead>
             <tr>
+              <th>Status</th>
               <th>Company</th>
               <th>Registration Number</th>
               <th>Examination Number</th>
               <th>Auditor</th>
               <th>Tanggal</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach($examinations as $examination): ?>
               <tr>
+                <td><?= $examination->status_label ?></td>
                 <td><?= $examination->company_name ?></td>
                 <td><?= $examination->registration_number ?></td>
                 <td><?= $examination->examination_number ?></td>
@@ -40,7 +41,6 @@
                   <?php endforeach ?>
                 </td>
                 <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
-                <td><?= $examination->status_label ?></td>
               </tr>
             <?php endforeach ?>
             
