@@ -2,17 +2,18 @@
 
 <?php
 
-if (!isset($_GET['company_id']) && !isset($_POST['company_id'])) {
+if (!isset($_GET['id'])) {
   header('Location: ./index.php');
 }
 
-$company = find("companies", $_GET['company_id']);
+$examination = examination_show($_GET['id']);
+$company = find("companies", $examination->company_id);
 $standards = all("standards");
 $scopes = all("scopes");
 
 
 if (isset($_POST['examination_number'])) {
-  $examinationNumExist = query("SELECT * FROM examinations WHERE examination_number='{$_POST['examination_number']}'");
+  $examinationNumExist = query("SELECT * FROM examinations WHERE examination_number='{$_POST['examination_number']}' AND examination_id != {$_GET['id']}");
   if (!empty($examinationNumExist)) {
     flash("Examination Number sudah ada!", "error");
     header('Location: ' . $_SERVER['PHP_SELF']);
@@ -22,16 +23,15 @@ if (isset($_POST['examination_number'])) {
   $year = $dates[0] + 3;
   $expiration_date = "{$year}-{$dates[1]}-{$dates[2]}";
   
-  $examination_id = store("examinations", [
-    "company_id"             => $_GET['company_id'],
+  $examination_id = update("examinations", [
+    "id"                     => $_GET['id'],
     "standard_id"            => $_POST['standard_id'],
     "examination_number"     => $_POST['examination_number'],
     "registration_date"      => $_POST['registration_date'],
     "expiration_date"        => $expiration_date,
     "examination_start_date" => $_POST['examination_start_date'],
-    "examination_end_date"   => $_POST['examination_end_date'],
-    "status"                 => 1
-  ], true);
+    "examination_end_date"   => $_POST['examination_end_date']
+  ]);
 
   // * SCOPES
   foreach($_POST['scopes'] as $scope_id) {
