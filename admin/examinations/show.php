@@ -173,7 +173,7 @@ $examination = examination_show($_GET['id']);
           <thead>
             <tr>
               <th>Nama</th>
-              <th>Tanggal Upload</th>
+              <th>Waktu Upload</th>
               <th>Dokumen</th>
             </tr>
           </thead>
@@ -181,14 +181,31 @@ $examination = examination_show($_GET['id']);
             <?php foreach ($examination->documents as $document) : ?>
               <tr>
                 <td><?= $document->name ?></td>
-                <td><?= $document->document ? format_date($document->document->uploaded_at) : 'Tidak ada' ?></td>
+                <td><?= $document->document ? format_date($document->document->uploaded_at, 'd/m/Y H:i:s') : 'Tidak ada' ?></td>
                 <td>
                   <div class="p-2">
+                    <!-- IF DOCUMENT EXIST -->
                     <?php if ($document->document) : ?>
-                      <a class="btn btn-sm btn-info" href="../../storage/examinations/<?= $document->document->file ?>" download>
-                        <i class="fa-solid fa-download"></i>
-                        <span>Download</span>
-                      </a>
+                      <?php if ($document->type == 'approval') : ?>
+                        <div class="d-flex">
+                          <a class="btn btn-sm btn-info mr-1" href="../../storage/examinations/<?= $document->document->file ?>">
+                            <i class="fa-solid fa-download"></i>
+                          </a>
+
+                          <a class="btn btn-sm btn-warning mr-1" href="../examinations-document/edit.php?id=<?= $document->document->id ?>">
+                            <i class="fa-solid fa-upload"></i>
+                          </a>
+                          <a class="btn btn-sm btn-danger delete-btn" data-url="../examinations-document/delete.php?id=<?= $document->document->id ?>">
+                            <i class="fa-solid fa-trash"></i>
+                          </a>
+                        </div>
+                      <?php else : ?>
+                        <a class="btn btn-sm btn-info" href="../../storage/examinations/<?= $document->document->file ?>" download>
+                          <i class="fa-solid fa-download"></i>
+                          <span>Download</span>
+                        </a>
+                      <?php endif; ?>
+                      
                     <?php else : ?>
                       <?php if ($document->type == 'approval') : ?>
                         <a class="btn btn-sm" href="../examinations-document/create.php?document_type=<?= $document->type_id ?>&examination_id=<?= $examination->id ?>">
