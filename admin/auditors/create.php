@@ -6,7 +6,6 @@ if (isset($_POST['email'])) {
   if (!empty($emailExist)) {
     flash("Auditor dengan email tersebut sudah terdaftar!", "error");
     header('Location: ' . $_SERVER['PHP_SELF']);
-    return;
   }
 
   $first_name = str_replace(' ', '_', $_POST['first_name']);

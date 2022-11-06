@@ -6,7 +6,6 @@ if (isset($_POST['registration_number'])) {
   if (!empty($registrationNumExist)) {
     flash("Registration Number sudah ada!", "error");
     header('Location: ' . $_SERVER['PHP_SELF']);
-    return;
   }
   $company_id = store("companies", [], true);
   $user = store("users", [

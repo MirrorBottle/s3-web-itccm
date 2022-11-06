@@ -21,8 +21,7 @@ $auditors = query("SELECT * FROM auditors WHERE id IN ($str_auditor_ids)");
 if (isset($_POST['examination_id'])) {
   if (!isset($_POST['auditors'])) {
     flash("Jadwal masih tidak ada!", "error");
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    return;
+    header("Location: ${$_SERVER['PHP_SELF']}?id={$_POST['examination_id']}");
   }
   $examination_id = $_GET['examination_id'];
   store_bulk("examination_auditors", $_POST['auditors']);

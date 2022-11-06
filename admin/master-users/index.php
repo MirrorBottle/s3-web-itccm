@@ -9,10 +9,10 @@ $users = all("users");
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
         <h3>Daftar User</h3>
-        <a href="./create.php" class="btn btn-outline-primary">
+        <!-- <a href="./create.php" class="btn btn-outline-primary">
           <i class="fa-solid fa-user-plus"></i>
           <span>Tambah User</span>
-        </a>
+        </a> -->
       </div>
     </div>
     <div class="card-body">
@@ -43,7 +43,10 @@ $users = all("users");
                     <a href="./edit.php?id=<?= $user->id ?>" class="btn btn-sm btn-warning mr-1">
                       <i class="fa-solid fa-pen ml-1"></i>
                     </a>
-                    <a data-url="../../admin/companies/delete.php?id=<?= $user->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
+                    <a href="./reset-password.php?id=<?= $user->id ?>" class="btn btn-sm btn-info mr-1">
+                      <i class="fa-solid fa-key ml-1"></i>
+                    </a>
+                    <a data-url="../../admin/users/delete.php?id=<?= $user->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
                       <i class="fa-solid fa-trash-can ml-1"></i>
                     </a>
                   </div>
