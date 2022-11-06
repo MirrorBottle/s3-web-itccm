@@ -2,7 +2,7 @@
 
 <?php
 $auditor_id = $_SESSION['user']->auditor_id;
-$examinations = examination_list("", ['with_auditors' => true, 'with_schedules' => true], $auditor_id);
+$examinations = examination_list("", ['with_auditors' => true, 'with_schedules' => true, 'auditor_id' => $auditor_id]);
 ?>
 
 <section>
@@ -18,10 +18,12 @@ $examinations = examination_list("", ['with_auditors' => true, 'with_schedules' 
                         <tr>
                             <th>Status</th>
                             <th>Company</th>
-                            <th>Registration Number</th>
                             <th>Examination Number</th>
+                            <th>Registration Number</th>
+                            <th>Standar</th>
                             <th>Auditor</th>
                             <th>Tanggal</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,15 +33,22 @@ $examinations = examination_list("", ['with_auditors' => true, 'with_schedules' 
                                 <td><?= $examination->company_name ?></td>
                                 <td><?= $examination->registration_number ?></td>
                                 <td><?= $examination->examination_number ?></td>
+                                <td><?= $examination->standard_name ?></td>
                                 <td>
                                     <?php foreach ($examination->auditors as $auditor) : ?>
                                         <span><?= $auditor->name ?></span><br>
                                     <?php endforeach ?>
                                 </td>
                                 <td><?= format_date($examination->examination_start_date, "d/m/Y") ?> ~ <?= format_date($examination->examination_end_date, "d/m/Y") ?></td>
+                                <td>
+                                    <div class="p-1 d-flex align-items-center">
+                                        <a href="./show.php?id=<?= $examination->id ?>" class="btn btn-sm btn-secondary mr-1">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endforeach ?>
-
                     </tbody>
                 </table>
             </div>
