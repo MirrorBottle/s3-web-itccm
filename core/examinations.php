@@ -2,6 +2,48 @@
 
 require_once('functions.php');
 
+function examination_documents($documents) {
+  /** 
+   * * TIPE DOKUMEN
+   * * 1 = ITCCM APPROVAL
+   * * 2 = AUDITOR EXAMINATION PLAN
+   * * 3 = COMPANY PAYMENT
+   */
+  $approval = null;
+  $examination_plan = null;
+  $payment = null;
+
+  foreach($documents as $document) {
+    switch ($document->document_type) {
+      case '1':
+        $approval = $document;
+        break;
+      case '2':
+        $examination_plan = $document;
+        break;
+      case '3':
+        $payment = $document;
+        break;
+    }
+  }
+  return [
+    (object) [
+      'type' => 'approval',
+      'name' => 'Approval ITCCM',
+      'document' => $approval
+    ],
+    (object) [
+      'type' => 'examination_plan',
+      'name' => 'Examination Plan Auditor',
+      'document' => $examination_plan
+    ],
+    (object) [
+      'type' => 'payment',
+      'name' => 'Company Payment',
+      'document' => $payment
+    ],
+  ];
+}
 
 function examination_list($extra_query = '', $options = [])
 {
@@ -68,7 +110,7 @@ function examination_list($extra_query = '', $options = [])
 
     if (isset($options['with_documents'])) {
       $documents = query("SELECT * FROM examination_documents WHERE examination_id={$examination->id}");
-      $examination->documents = $documents;
+      $examination->documents = examination_documents($documents);
     }
 
     $examination->status_label = [

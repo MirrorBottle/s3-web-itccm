@@ -7,7 +7,6 @@ if (!isset($_GET['id'])) {
 }
 
 $examination = examination_show($_GET['id']);
-
 ?>
 
 <section id="registration">
@@ -90,7 +89,7 @@ $examination = examination_show($_GET['id']);
   <div class="card mb-3">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
-        <h3>Anggota Tim</h3>
+        <h3>Jadwal Examination</h3>
         <a href="./create.php" class="btn btn-warning">
           <i class="fa-solid fa-pen"></i>
           <span>Ubah Penjadwalan</span>
@@ -98,7 +97,8 @@ $examination = examination_show($_GET['id']);
       </div>
     </div>
     <div class="card-body">
-      <?php foreach($examination->auditors as $auditor): ?>
+      <h3 class="text-primary">Anggota Tim</h3>
+      <?php foreach ($examination->auditors as $auditor) : ?>
         <div class="row descriptions mb-3">
           <div class="col col-2">
             <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="">
@@ -133,6 +133,28 @@ $examination = examination_show($_GET['id']);
           </div>
         </div>
       <?php endforeach; ?>
+
+      <h3 class="text-primary mt-4">Jadwal</h3>
+      <div class="table-wrapper">
+        <table class="datatable-min">
+          <thead>
+            <tr>
+              <th>Auditor</th>
+              <th>Tanggal Mulai</th>
+              <th>Tanggal Selesai</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($examination->schedules as $schedule) : ?>
+              <tr>
+                <td><?= $schedule->auditor_name ?></td>
+                <td><?= format_date($schedule->start_date) ?></td>
+                <td><?= format_date($schedule->end_date) ?></td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -143,43 +165,33 @@ $examination = examination_show($_GET['id']);
       </div>
     </div>
     <div class="card-body">
-      <div class="row descriptions">
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Examination Number</div>
-            <div class="description-value"><?= $examination->examination_number ?></div>
-          </div>
-        </div>
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Standar</div>
-            <div class="description-value"><?= $examination->standard_name ?></div>
-          </div>
-        </div>
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Tanggal Registrasi</div>
-            <div class="description-value"><?= format_date($examination->registration_date) ?></div>
-          </div>
-        </div>
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Tanggal Mulai Examination</div>
-            <div class="description-value"><?= format_date($examination->examination_start_date) ?></div>
-          </div>
-        </div>
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Tanggal Selesai Examination</div>
-            <div class="description-value"><?= format_date($examination->examination_end_date) ?></div>
-          </div>
-        </div>
-        <div class="col col-12">
-          <div class="description-item">
-            <div class="description-label small">Tanggal Kadaluwarsa Sertifikat</div>
-            <div class="description-value"><?= format_date($examination->expiration_date) ?></div>
-          </div>
-        </div>
+      <div class="table-wrapper">
+        <table class="datatable-min">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Tanggal Upload</th>
+              <th>Dokumen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach($examination->documents as $document): ?>
+              <tr>
+                <td><?= $document->name ?></td>
+                <td><?= $document->document ? format_date($document->document->uploaded_at) : 'Tidak ada' ?></td>
+                <td>
+                  <?php if($document->document): ?>
+                    <a href="../../storage/examinations/<?= $document->document->file ?>" download>
+                      <i class="fa-download fa-upload"></i>
+                    </a>
+                  <?php else: ?>
+                    <p>Tidak ada</p>
+                  <?php endif; ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
