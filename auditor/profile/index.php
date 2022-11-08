@@ -50,7 +50,7 @@ if (isset($_POST['password_baru'])) {
     <div class="card-body">
       <div class="row descriptions">
         <div class="col col-2">
-          <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="">
+          <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="" class="auditor-img">
         </div>
         <div class="col col-10">
           <div class="row descriptions">

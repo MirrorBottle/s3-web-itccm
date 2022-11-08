@@ -45,7 +45,7 @@ CREATE TABLE `auditors` (
 
 INSERT INTO `auditors` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `birthday`, `address`, `photo`) VALUES
 (1, 'Bayu', 'Setiawan', 'setiawanbayu66152@gmail.com', '082353165184', '2022-10-12', 'Jl. Auditor Satu', 'bayu.png'),
-(2, 'Alfi', 'Nor Ihsan', 'alfinorihsan@gmail.com', '081234567891', '1995-10-13', 'Jl. Auditor Dua', 'alfi.png'),wwwwwwwwwwwwwwww
+(2, 'Alfi', 'Nor Ihsan', 'alfinorihsan@gmail.com', '081234567891', '1995-10-13', 'Jl. Auditor Dua', 'alfi.png'),
 (3, 'Alif', 'Maulana Setyawan', 'kecebongungu@gmail.com', '081234567891', '1995-10-13', 'Jl. Auditor 3', 'awan.jpeg');
 -- --------------------------------------------------------
 

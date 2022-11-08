@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 session_start();
 session_destroy();
 include_once('../../core/functions.php');
 
-if(isset($_GET['search']) && $_GET['search'] != '') {
+if (isset($_GET['search']) && $_GET['search'] != '') {
   $search = htmlspecialchars($_GET['search']);
   $examinations = examination_list("WHERE companies.name LIKE '%$search%'");
 } else {
@@ -48,18 +48,28 @@ if(isset($_GET['search']) && $_GET['search'] != '') {
       <thead>
         <tr>
           <th>Registration Number</th>
+          <th>Nama Perusahaan</th>
           <th>Examination Number</th>
           <th>Standar</th>
           <th>Tanggal Examination</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach($examinations as $examination): ?>
+        <?php foreach ($examinations as $examination) : ?>
           <tr>
             <td><?= $examination->registration_number ?></td>
+            <td><?= $examination->company_name ?></td>
             <td><?= $examination->examination_number ?></td>
             <td><?= $examination->standard_name ?></td>
             <td><?= format_date($examination->examination_start_date) ?> ~ <?= format_date($examination->examination_end_date) ?></td>
+            <td>
+              <div class="p-1 d-flex align-items-center">
+                <a href="./examination.php?examination_number=<?= $examination->examination_number ?>" class="btn btn-sm btn-secondary mr-1">
+                  <i class="fa-solid fa-circle-info"></i>
+                </a>
+              </div>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

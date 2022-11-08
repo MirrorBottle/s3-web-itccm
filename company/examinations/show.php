@@ -10,33 +10,6 @@ $examination = examination_show($_GET['id']);
 ?>
 
 <section id="registration">
-  <!-- <div class="alert alert-danger mb-3">
-    <p>Dokumen <b>Approval ITCCM</b> belum di-upload. Mohon segera upload dokumen berikut untuk melanjutkan ke tahap <b>Proses</b></p>
-  </div> -->
-  <div class="card mb-3">
-    <div class="card-header">
-      <div class="d-flex align-items-center justify-content-between">
-        <h3>Detail Singkat Company</h3>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="row descriptions">
-        <div class="col col-6">
-          <div class="description-item">
-            <div class="description-label">Nama Perusahaan</div>
-            <div class="description-value"><?= $examination->company_name ?></div>
-          </div>
-        </div>
-        <div class="col col-6">
-          <div class="description-item">
-            <div class="description-label">Registration Number</div>
-            <div class="description-value"><?= $examination->registration_number ?></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="card mb-3">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
@@ -82,6 +55,26 @@ $examination = examination_show($_GET['id']);
           </div>
         </div>
       </div>
+
+      <h3 class="text-primary mt-4">Lingkup Pengerjaan</h3>
+      <div class="table-wrapper">
+        <table class="datatable-min">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($examination->scopes as $scope) : ?>
+              <tr>
+                <td><?= $scope->scope_code ?></td>
+                <td><?= $scope->scope_name ?></td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -96,7 +89,7 @@ $examination = examination_show($_GET['id']);
       <?php foreach ($examination->auditors as $auditor) : ?>
         <div class="row descriptions mb-3">
           <div class="col col-2">
-            <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="">
+            <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="" class="auditor-img">
           </div>
           <div class="col col-10">
             <div class="row descriptions">
