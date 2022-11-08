@@ -24,15 +24,15 @@ if (isset($_POST['examination_id'])) {
     header("Location: ${$_SERVER['PHP_SELF']}?id={$_POST['examination_id']}");
   }
   $examination_id = $_GET['examination_id'];
-  store_bulk("examination_auditors", $_POST['auditors']);
-  update("examinations", [
-    "id" => $examination_id,
-    "status" => 2
-  ]);
-  flash("Penjadwalan Examination berhasil! Silahkan melanjutkan ke tahap persetujuan", "success");
-  header("Location: ../examinations/show.php?examination_id=" . $examination_id);
-}
 
+  $examination_auditor_ids = array_map(function ($schedule) {
+    return $schedule->examination_auditor_id;
+  }, $examination->schedules);
+  delete_bulk("examination_auditors", $examination_auditor_ids);
+  store_bulk("examination_auditors", $_POST['auditors']);
+  flash("Penjadwalan Examination berhasil diubah!", "success");
+  header("Location: ../examinations/show.php?id=$examination_id");
+}
 ?>
 
 <section id="registration">
@@ -74,7 +74,7 @@ if (isset($_POST['examination_id'])) {
   <div class="card">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
-        <h3>Penjadwalan Examination</h3>
+        <h3>Ubah Penjadwalan Examination</h3>
         <button id="add-schedule-btn" class="btn btn-outline-primary">
           <i class="fa-solid fa-user-plus"></i>
           <span>Tambah Jadwal</span>
@@ -85,6 +85,50 @@ if (isset($_POST['examination_id'])) {
       <form class="form" action="" method="POST">
         <input type="hidden" name="examination_id" value="<?= $_GET['examination_id'] ?>">
         <div id="schedules-container">
+          <?php foreach ($examination->schedules as $key => $schedule) : ?>
+            <div class="schedule" id="schedule-<?= $key + 1 ?>">
+              <div class="d-flex align-items-center justify-content-between">
+                <h3 class="schedule-name">Jadwal <?= $key + 1 ?> </h3>
+                <button class="btn btn-danger delete-schedule-btn" data-id=<?= $key + 1 ?>>
+                  <span>Hapus</span>
+                </button>
+              </div>
+              <input type="hidden" name="auditors[<?= $key ?>][examination_id]" value="<?= $_GET['examination_id'] ?>">
+              <div class="form-control">
+                <label for="">Standar</label>
+                <div class="input-wrapper">
+                  <select name="auditors[<?= $key ?>][auditor_id]" class="select2 w-100" required>
+                    <?php foreach ($auditors as $auditor) : ?>
+                      <option value="<?= $auditor->id ?>" <?= $schedule->auditor_id == $auditor->id ? 'selected' : '' ?>>
+                        <?= $auditor->first_name ?> <?= $auditor->last_name ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-control">
+                <label for="">Tanggal Mulai</label>
+                <div class="input-wrapper">
+                  <input type="date" class="w-100" name="auditors[<?= $key ?>][start_date]" required value="<?= $schedule->start_date ?>">
+                </div>
+              </div>
+              <div class="form-control">
+                <label for="">Tanggal Selesai</label>
+                <div class="input-wrapper">
+                  <input type="date" class="w-100" name="auditors[<?= $key ?>][end_date]" required value="<?= $schedule->end_date ?>">
+                </div>
+              </div>
+              <div class="form-control">
+                <label for="">Posisi</label>
+                <div class="input-wrapper">
+                  <input type="radio" name="auditors[<?= $key ?>][position]" value="1" id="position<?= $key + 1 ?>-1" class="m-2" <?= $schedule->position == 1 ? 'checked' : '' ?>>
+                  <label for="position<?= $key + 1 ?>-1" class="cursor-pointer bg-info">Team Leader</label>
+                  <input type="radio" name="auditors[<?= $key ?>][position]" value="2" id="position<?= $key + 1 ?>-2" class="m-2" <?= $schedule->position == 2 ? 'checked' : '' ?>>
+                  <label for="position<?= $key + 1 ?>-2" class="cursor-pointer bg-info">Member</label>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
 
         </div>
         <div class="text-right mt-3 pt-3">
@@ -100,13 +144,14 @@ if (isset($_POST['examination_id'])) {
 
 <script>
   $(function() {
-    let total_schedules = 0;
+    let total_schedules = <?= count($examination->schedules) ?>;
 
     function renameSchedules() {
       $(".schedule-name").each(function(idx) {
         $(this).html(`Jadwal ${idx + 1}`)
       })
     }
+
     function createSchedule() {
       total_schedules++;
       const idx = total_schedules;
@@ -154,10 +199,9 @@ if (isset($_POST['examination_id'])) {
       $('#schedules-container .select2').select2();
       renameSchedules();
     }
-    createSchedule();
 
     $(document).on('click', '.delete-schedule-btn', function() {
-      if(total_schedules != 1) {
+      if (total_schedules != 1) {
         const id = $(this).data('id');
         $(`#schedule-${id}`).remove();
         total_schedules--;

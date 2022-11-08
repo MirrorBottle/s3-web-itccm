@@ -81,6 +81,13 @@ aside ul li.active {
   margin: 10px!important;
 }
 
+
+.auditor-img {
+  width: 190px;
+  background-size: cover;
+  height: 205px;
+  object-fit: cover;
+}
 @media(max-width: 768px) {
   aside {
     min-height: 0px;

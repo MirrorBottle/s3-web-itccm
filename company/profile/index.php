@@ -91,7 +91,6 @@
     </div>
     <div class="card-body">
       <form class="form" action="" method="POST">
-        <input type="hidden" class="w-100" name="id" required value="<?= $_GET['id'] ?>">
         <div class="form-control">
           <label for="">Password Lama</label>
           <div class="input-wrapper">

@@ -46,7 +46,7 @@ $companies = all("companies");
                     <a data-url="../../admin/companies/delete.php?id=<?= $company->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
                       <i class="fa-solid fa-trash-can ml-1"></i>
                     </a>
-                    <a class="btn btn-sm btn-info delete-btn">
+                    <a href="../examinations/create.php?company_id=<?= $company->id ?>" class="btn btn-sm btn-info">
                       <i class="fa-solid fa-folder-plus"></i>
                     </a>
                   </div>

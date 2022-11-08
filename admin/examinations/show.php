@@ -41,7 +41,7 @@ $examination = examination_show($_GET['id']);
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
         <h3>Detail Examination</h3>
-        <a href="./create.php" class="btn btn-warning">
+        <a href="./edit.php?id=<?= $_GET['id'] ?>" class="btn btn-warning">
           <i class="fa-solid fa-pen"></i>
           <span>Ubah Examination</span>
         </a>
@@ -86,6 +86,26 @@ $examination = examination_show($_GET['id']);
           </div>
         </div>
       </div>
+
+      <h3 class="text-primary mt-4">Lingkup Pengerjaan</h3>
+      <div class="table-wrapper">
+        <table class="datatable-min">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($examination->scopes as $scope) : ?>
+              <tr>
+                <td><?= $scope->scope_code ?></td>
+                <td><?= $scope->scope_name ?></td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -93,7 +113,7 @@ $examination = examination_show($_GET['id']);
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
         <h3>Jadwal Examination</h3>
-        <a href="./create.php" class="btn btn-warning">
+        <a href="../examinations-schedule/edit.php?examination_id=<?= $examination->id ?>" class="btn btn-warning">
           <i class="fa-solid fa-pen"></i>
           <span>Ubah Penjadwalan</span>
         </a>
@@ -104,7 +124,7 @@ $examination = examination_show($_GET['id']);
       <?php foreach ($examination->auditors as $auditor) : ?>
         <div class="row descriptions mb-3">
           <div class="col col-2">
-            <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="">
+            <img src="../../storage/auditors/<?= $auditor->photo ?>" alt="" class="auditor-img">
           </div>
           <div class="col col-10">
             <div class="row descriptions">

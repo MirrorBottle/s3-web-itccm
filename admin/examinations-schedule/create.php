@@ -30,7 +30,7 @@ if (isset($_POST['examination_id'])) {
     "status" => 2
   ]);
   flash("Penjadwalan Examination berhasil! Silahkan melanjutkan ke tahap persetujuan", "success");
-  header("Location: ../examinations/show.php?examination_id=" . $examination_id);
+  header("Location: ../examinations/show.php?id=$examination_id");
 }
 
 ?>

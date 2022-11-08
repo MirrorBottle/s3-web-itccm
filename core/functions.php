@@ -96,7 +96,7 @@ function delete($table, $id) {
 	return mysqli_affected_rows($connection) > 0;
 }
 
-function delete_multiple($table, $ids) {
+function delete_bulk($table, $ids) {
 	global $connection;
 	$ids = join(", ", array_map('intval', $ids));
 	mysqli_query($connection, "DELETE FROM $table WHERE id IN ($ids)");

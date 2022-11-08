@@ -44,9 +44,9 @@ CREATE TABLE `auditors` (
 --
 
 INSERT INTO `auditors` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `birthday`, `address`, `photo`) VALUES
-(1, 'david', 'andri', 'david.andri@gmail.com', '082353123434', '2022-10-12', 'Jl. Kebahagiaan', 'david-andri.jpg'),
-(2, 'shyna', 'mala', 'shyna.mala@gmail.com', '081234567891', '1995-10-13', 'Jl. Konstruksi', 'shyna-mala.jpg');
-
+(1, 'Bayu', 'Setiawan', 'setiawanbayu66152@gmail.com', '082353165184', '2022-10-12', 'Jl. Auditor Satu', 'bayu.png'),
+(2, 'Alfi', 'Nor Ihsan', 'alfinorihsan@gmail.com', '081234567891', '1995-10-13', 'Jl. Auditor Dua', 'alfi.png'),wwwwwwwwwwwwwwww
+(3, 'Alif', 'Maulana Setyawan', 'kecebongungu@gmail.com', '081234567891', '1995-10-13', 'Jl. Auditor 3', 'awan.jpeg');
 -- --------------------------------------------------------
 
 --
@@ -67,10 +67,16 @@ CREATE TABLE `auditor_qualifications` (
 INSERT INTO `auditor_qualifications` (`id`, `auditor_id`, `standard_id`, `expiration_date`) VALUES
 (1, 1, 1, '2024-10-13'),
 (2, 1, 2, '2024-10-13'),
-(3, 2, 1, '2025-10-13'),
-(4, 2, 2, '2025-10-13'),
-(5, 2, 3, '2025-10-13'),
-(6, 2, 4, '2025-10-13');
+(3, 1, 3, '2024-10-13'),
+(4, 1, 4, '2024-10-13'),
+(5, 2, 1, '2025-10-13'),
+(6, 2, 2, '2025-10-13'),
+(7, 2, 3, '2025-10-13'),
+(8, 2, 4, '2025-10-13'),
+(9, 3, 1, '2024-10-13'),
+(10, 3, 2, '2024-10-13'),
+(11, 3, 3, '2024-10-13'),
+(12, 3, 4, '2024-10-13');
 
 -- --------------------------------------------------------
 
@@ -116,14 +122,6 @@ CREATE TABLE `examinations` (
   `note` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `examinations`
---
-
-INSERT INTO `examinations` (`id`, `company_id`, `standard_id`, `examination_number`, `registration_date`, `examination_start_date`, `examination_end_date`, `expiration_date`, `status`, `note`) VALUES
-(1, 1, 1, 'QMS1000-1', '2022-10-06', '2022-11-01', '2023-01-30', '2025-01-30', '1', NULL),
-(2, 2, 2, 'EMS1100-1', '2022-10-06', '2022-11-01', '2023-01-30', '2025-10-13', '1', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -138,17 +136,6 @@ CREATE TABLE `examination_auditors` (
   `end_date` date DEFAULT NULL,
   `position` enum('1','2') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `examination_auditors`
---
-
-INSERT INTO `examination_auditors` (`id`, `examination_id`, `auditor_id`, `start_date`, `end_date`, `position`) VALUES
-(1, 1, 1, '2022-11-01', '2023-01-30', '1'),
-(2, 1, 2, '2022-11-01', '2022-12-23', '2'),
-(3, 1, 2, '2023-01-01', '2023-01-11', '2'),
-(4, 2, 2, '2022-11-01', '2022-12-16', '1'),
-(5, 2, 1, '2022-12-08', '2023-01-30', '2');
 
 -- --------------------------------------------------------
 
@@ -176,17 +163,6 @@ CREATE TABLE `examination_scopes` (
   `scope_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `examination_scopes`
---
-
-INSERT INTO `examination_scopes` (`id`, `examination_id`, `scope_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 2, 7),
-(6, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -261,10 +237,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `company_id`, `auditor_id`) VALUES
 (1, 'admin', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '1', NULL, NULL),
-(2, 'david.andri', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 1),
-(3, 'shyna.mala', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 2),
-(4, 'RQ1000', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 1, NULL),
-(5, 'RQ1100', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 2, NULL);
+(2, 'bayu', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 1),
+(3, 'alfi', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 2),
+(4, 'awan', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '2', NULL, 3),
+(5, 'RQ1000', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 1, NULL),
+(6, 'RQ1100', '$2y$10$1c544DDvxuCGwQrFrUqMaO/1HGSfFM5AGtEJ4eeDRXTvpkNI2ZPl.', '3', 2, NULL);
 
 --
 -- Indexes for dumped tables
