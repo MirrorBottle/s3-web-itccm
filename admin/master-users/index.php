@@ -37,16 +37,13 @@ $users = all("users");
                 ][$user->role] ?></td>
                 <td>
                   <div class="p-1 d-flex align-items-center">
-                    <a href="./show.php?id=<?= $user->id ?>" class="btn btn-sm btn-secondary mr-1">
-                      <i class="fa-solid fa-circle-info"></i>
-                    </a>
                     <a href="./edit.php?id=<?= $user->id ?>" class="btn btn-sm btn-warning mr-1">
                       <i class="fa-solid fa-pen ml-1"></i>
                     </a>
                     <a href="./reset-password.php?id=<?= $user->id ?>" class="btn btn-sm btn-info mr-1">
                       <i class="fa-solid fa-key ml-1"></i>
                     </a>
-                    <a data-url="../../admin/users/delete.php?id=<?= $user->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
+                    <a data-url="../../admin/master-users/delete.php?id=<?= $user->id ?>" class="btn btn-sm btn-danger mr-1 delete-btn">
                       <i class="fa-solid fa-trash-can ml-1"></i>
                     </a>
                   </div>
