@@ -81,7 +81,7 @@ if (isset($_FILES['document'])) {
       </div>
     </div>
   </div>
-
+  <div class="alert alert-success mb-3">File dalam bentuk PDF</div>
   <div class="card">
     <div class="card-header">
       <div class="d-flex align-items-center justify-content-between">
@@ -99,7 +99,7 @@ if (isset($_FILES['document'])) {
         <div class="form-control">
           <label for="">File</label>
           <div class="input-wrapper">
-            <input type="file" class="w-100" name="document" required>
+            <input type="file" class="w-100" name="document" required accept="application/pdf">
           </div>
         </div>
         <div class="text-right mt-3">

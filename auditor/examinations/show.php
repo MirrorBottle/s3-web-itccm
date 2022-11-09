@@ -185,6 +185,7 @@ $examination = examination_show($_GET['id']);
           <thead>
             <tr>
               <th>Nama</th>
+              <th>Template</th>
               <th>Tanggal Upload</th>
               <th>Dokumen</th>
             </tr>
@@ -193,6 +194,21 @@ $examination = examination_show($_GET['id']);
             <?php foreach ($examination->documents as $document) : ?>
               <tr>
                 <td><?= $document->name ?></td>
+                <td>
+                  <?php if ($document->type == 'examination_plan') : ?>
+                    <?php $template = [
+                      'approval' => '../../storage/templates/itccm_approval.docx',
+                      'examination_plan' => '../../storage/templates/auditor_examination_plan.docx',
+                      'payment' => '../../storage/templates/company_payment.docx',
+                    ][$document->type]; ?>
+                    <a class="btn btn-sm btn-info" href="<?= $template ?>" download>
+                      <i class="fa-solid fa-download"></i>
+                      <span>Download</span>
+                    </a>
+                  <?php else : ?>
+                    <p>-</p>
+                  <?php endif; ?>
+                </td>
                 <td><?= $document->document ? format_date($document->document->uploaded_at, 'd/m/Y H:i:s') : 'Tidak ada' ?></td>
                 <td>
                   <div class="p-2">
@@ -207,25 +223,29 @@ $examination = examination_show($_GET['id']);
                           <a class="btn btn-sm btn-warning mr-1" href="../examinations-document/edit.php?id=<?= $document->document->id ?>">
                             <i class="fa-solid fa-upload"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger delete-btn" data-url="../examinations-document/delete.php?id=<?= $document->document->id ?>">
+                          <a class="btn btn-sm btn-danger delete-btn  mr-1" data-url="../examinations-document/delete.php?id=<?= $document->document->id ?>">
                             <i class="fa-solid fa-trash"></i>
+                          </a>
+                          <a class="btn btn-sm btn-primary" href="../examinations-document/preview.php?id=<?= $document->document->id ?>">
+                            <i class="fa-solid fa-eye"></i>
                           </a>
                         </div>
                       <?php else : ?>
-                        <a class="btn btn-sm btn-info" href="../../storage/examinations/<?= $document->document->file ?>" download>
-                          <i class="fa-solid fa-download"></i>
-                          <span>Download</span>
+                        <a class="btn btn-sm btn-info mr-2" href="../../storage/examinations/<?= $document->document->file ?>" download>
+                          <i class="fa-solid fa-download ml-1"></i>
+                        </a>
+                        <a class="btn btn-sm btn-primary" href="../examinations-document/preview.php?id=<?= $document->document->id ?>">
+                          <i class="fa-solid fa-eye"></i>
                         </a>
                       <?php endif; ?>
-                      
                     <?php else : ?>
                       <?php if ($document->type == 'examination_plan') : ?>
-                        <?php if($examination->documents[0]->document): ?>
+                        <?php if ($examination->documents[0]->document) : ?>
                           <a class="btn btn-sm" href="../examinations-document/create.php?document_type=<?= $document->type_id ?>&examination_id=<?= $examination->id ?>">
                             <i class="fa-solid fa-upload"></i>
                             <span>Upload</span>
                           </a>
-                        <?php else: ?>
+                        <?php else : ?>
                           <p style="font-weight: bold; color: var(--danger)">Menunggu ITCCM</p>
                         <?php endif; ?>
                       <?php else : ?>
