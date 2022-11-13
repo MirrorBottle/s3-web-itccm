@@ -47,6 +47,14 @@
                     <a href="./show.php?id=<?= $examination->id ?>" class="btn btn-sm btn-secondary mr-1">
                       <i class="fa-solid fa-circle-info"></i>
                     </a>
+                    <?php if($examination->status == 1): ?>
+                      <a href="../examinations-schedule/create.php?examination_id=<?= $examination->id ?>" class="btn btn-sm btn-info mr-1">
+                        <i class="fa-solid fa-calendar"></i>
+                      </a>
+                    <?php endif ?>
+                    <a data-url="../../admin/examinations/delete.php?id=<?= $examination->id ?>" class="btn btn-sm btn-danger delete-btn mr-1">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </a>
                   </div>
                 </td>
               </tr>
