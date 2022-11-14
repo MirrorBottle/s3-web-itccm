@@ -1,9 +1,25 @@
 <?php
 session_start();
 include("../../core/functions.php");
+
+$link = $_SERVER['PHP_SELF'];
+$link_array = explode('/', $link);
+
 if (!$_SESSION['is_login']) {
   header("location:../../index.php");
 }
+
+$role = [
+  '1' => 'admin',
+  '2' => 'auditor',
+  '3' => 'company'
+][$_SESSION['user']->role];
+
+if(!in_array($role, $link_array)) {
+  header("Location:../../{$role}/dashboard/index.php");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
